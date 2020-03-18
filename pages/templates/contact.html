@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<body>
+    {% include 'header.html' %}
+
+    <div style="background-color: #ff9900;" class="p-0 m-0">
+        <div class="row w-100 m-0">
+            <div class="col-12 w-100 p-0">
+                <div class=" d-flex justify-content-center">
+                    <h1 class=" font-weight-bold my-5 text-center display-3 text-light px-1">Contact Us</h1>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row w-100 m-0">
+            <div class="col">
+
+            </div>
+
+            <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12 w-100 p-0">
+                <div class=" d-flex justify-content-around">
+
+                    <p class=" text-center text-light lead w-100 text-wrap pb-5 px-3">
+                        We'd love to help you!
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="col">
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="cotainer">
+        <div class="row w-100 my-5">
+            <div class="col">
+
+            </div>
+            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 m-3">
+
+                <div class="row mb-5 p-2">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 mb-5">
+                        <h1 class="">Reach out to us!</h1>
+                        <div style="height: 5px; background-color:#ff9900; width:80px;"
+                            class="ml-aut mr-auto mt-2 mb-3"></div>
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputEmail4">Full name</label>
+                                    <input type="text" class="form-control" id="inputEmail4" placeholder="Full name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputPassword4">Phone number</label>
+                                    <input type="text" class="form-control" id="inputPassword4"
+                                        placeholder="Phone number">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress">Email Address</label>
+                                <input type="email" class="form-control" id="inputAddress" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress2">Message</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                    placeholder="Write your text here"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-light font-weight-bold w-50 text-light p-2"
+                                style="background-color: #ff9900;">Submit</button>
+                        </form>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <h1>Other ways to connect</h1>
+                        <div style="height: 5px; background-color:#ff9900; width:80px;"
+                            class="ml-aut mr-auto mt-2 mb-3"></div>
+
+                        <div class="d-flex flex-column">
+
+                            <div class=" d-flex flex-row">
+                                <i class="fab fa-instagram fa-2x mx-3"></i>
+                                <h4 class=" text-muted my-1">Instagram</h3>
+                            </div>
+                            <div class=" d-flex flex-row">
+                                <i class="fab fa-twitter fa-2x mx-3"></i>
+                                <h4 class=" text-muted my-1">Twitter</h3>
+                            </div>
+                            <div class=" d-flex flex-row">
+                                <i class="fab fa-facebook fa-2x mx-3"></i>
+                                <h4 class=" text-muted my-1">Facebook</h3>
+                            </div>
+                            <div class=" d-flex flex-row">
+                                <i class="fab fa-linkedin-in fa-2x mx-3"></i>
+                                <h4 class=" text-muted my-1">Linked In</h3>
+                            </div>
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col">
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <div style="background-color: #ff9900;" class="m-0 w-100 p-5">
+        <div class="row w-100 m-0">
+            <div class="col-xl-2 col-lg-2 col-md-6 col-sm-12 col-xs-12">
+                <div class="d-flex justify-content-center">
+                    <img src="{% static 'icon/around me.png' %}" alt="" width="199" height="120" class="">
+                </div>
+
+                <h2 class=" font-weight-bold text-center">Around Tz</h2>
+
+
+            </div>
+            <div class="col">
+                <div class="row w-100">
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class=" d-flex justify-content-center">
+                            <div>
+                                <h4 class="mt-5">Information</h4>
+                                <ul class=" list-unstyled" style="background-color: #ff9900;">
+                                    <li>
+                                        <a href="{% url 'pages:about' %}" class="">About us</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'pages:contact' %}">Contact us</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class=" d-flex justify-content-center">
+                            <div>
+                                <h4 class=" mt-5">Connect +</h4>
+
+                                <div class="d-flex flex-column mt-2">
+    
+                                    <div class=" d-flex flex-row">
+                                        <i class="fab fa-instagram fa-lg mx-3"></i>
+                                        <h6 class=" text-muted my-1">Instagram</h3>
+                                    </div>
+                                    <div class=" d-flex flex-row">
+                                        <i class="fab fa-twitter fa-lg mx-3"></i>
+                                        <h6 class=" text-muted my-1">Twitter</h3>
+                                    </div>
+                                    <div class=" d-flex flex-row">
+                                        <i class="fab fa-facebook fa-lg mx-3"></i>
+                                        <h6 class=" text-muted my-1">Facebook</h3>
+                                    </div>
+                                    <div class=" d-flex flex-row">
+                                        <i class="fab fa-linkedin-in fa-lg mx-3"></i>
+                                        <h6 class=" text-muted my-1">Linked In</h3>
+                                    </div>
+    
+                                </div>
+                            </div>
+                           
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+
+                <form action="" class="mt-5">
+                    <label for="" class="h4">Subscribe for more info.</label>
+                    <input type="text" name="subscribe" class=" form-control" id="" placeholder="Subscribe">
+                    <button type="submit" class=" btn btn-light font-weight-bold my-2"
+                        style="color: #ff9900;">Subscribe</button>
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+{% endblock %}

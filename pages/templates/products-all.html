@@ -1,0 +1,46 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block javascript %}
+<script>
+   
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- ****************** NAVIGATION BAR -->
+{% include 'profile_header.html' %}
+
+
+
+<div class="container mt-3">
+    <h2 class="page-header">All Products or Services</h2>
+    <hr>
+    
+    <div class="row mb-5" style="margin-top: 20px">
+        {% for product in products %}
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">            
+            <div class="d-flex justify-content-center">
+                <div class="card m-2" style="width: 18rem; height:25rem;">
+                    <img src="{{ product.image.url }}" class="card-img-top border-0" height="200" width="100%" alt="..." style="object-fit: contain;">
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold">{{ product.title }}</h5>
+                        <div style="text-overflow:ellipsis; overflow:hidden; height:5rem;">
+                            <p class="card-text" style="line-height: 1; "><small>{{ product.details }}</small></p>
+                        </div>
+                       
+                        <p class="card-text">{{ product.price }}/=</p>
+                    </div>
+                    <div class="d-flex justify-content-end p-2">
+                        <a href="{% url 'pages:product_view' product.id product.user_id %}" class="btn btn-primary btn-sm p-1 mr-2">View Product</a>
+                    </div>            
+                </div>
+            </div>   
+        </div>
+        {% empty %}
+        <h3>Products or Services Not found!</h3>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

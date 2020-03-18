@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<body>
+    {% include 'profile_header.html' %}
+    <!-- CONTAINER -->
+    <div class="container mb-5">
+
+        <div class="row mt-5">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div>
+                    <form method="POST">{% csrf_token %}
+                        <h3 class="font-weight-bold">Owner info</h3>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                {{form.first_name|as_crispy_field}}
+                            </div>
+                            <div class="form-group col-md-6">
+                                {{form.last_name|as_crispy_field}}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <span class="mr-3 ml-1">Gender</span>
+                                {{form.gender|as_crispy_field}}
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="row">
+
+
+                                    <div class="col">
+                                        <span class="m-1">Birth date</span>
+                                        {{form.birthdate|as_crispy_field}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="font-weight-bold">Business info</h3>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                {{form.business_name|as_crispy_field}}
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                {{form.business_type|as_crispy_field}}
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                {{form.country|as_crispy_field}}
+                            </div>
+                            <div class="form-group col">
+                                {{form.city|as_crispy_field}}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            {{form.street|as_crispy_field}}
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-5">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <img src="img/shardayyy-photography-fJzmPe-a0eU-unsplash.jpg" alt="" width="100%" height="100%">
+            </div>
+        </div>
+
+    </div>
+</body>
+
+{% endblock %}

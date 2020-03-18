@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% load tz %}
+
+<body>
+    {% include 'header.html' %}
+    <div class="container-fluid">
+        <div class="row mt-2 mb-5" style="height: 100%">
+            <div
+                class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 m-1 d-none d-sm-none d-md-none d-lg-block d-xl-block p-0">
+                <h5 class="font-weight-bold ml-1">Search By Category</h5>
+                <div class="mr-4 ml-1">
+                    <hr class="m-0">
+                </div>
+                <div class="vertical-nav">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="{% url 'pages:search_cat' query='money agent'%}">
+                                <small>Money Agents</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="{% url 'pages:search_cat' query='mobile & accessories'%}">
+                                <small>Mobile & Accessories</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="{% url 'pages:search_cat' query='fashion' %}">
+                                <small>Fashion</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="{% url 'pages:search_cat' query='restaurant'%}">
+                                <small>Restaurants</small>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="#">
+                                <small>Tailor</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="#">
+                                <small>Automobile</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="#">
+                                <small>Hardware</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="#">
+                                <small>Capentry</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="#">
+                                <small>Pub</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="#">
+                                <small>Mobiles</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="#">
+                                <small>Computer</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="#">
+                                <small>Butcher</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="#">
+                                <small>Pharmacy</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="#">
+                                <small>Hospital</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="#">
+                                <small>Hotel</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="#">
+                                <small>Saloon</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link d-flex flex-row" href="#">
+                                <small>Bakery</small>
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="col mt-1">
+                <div class="row">
+                    <div class="col-12 rounded-lg mt-2">
+                        <form action="{% url 'pages:search' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="col-12">
+                                <div class="input-group mb-2">
+                                    <input type="text" class="form-control rounded-pill" placeholder="Search" name="query">
+                                    <button type="submit"
+                                        class="btn text-secondary rounded-pill ml-2"><i
+                                            class="fas fa-search fa-lg navlinkclr"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- ############# specific links ############# -->
+                <!-- <div class="row m-2">
+                    <div class="col-12">
+                        <div class="d-flex flex-row overflow-auto">
+                            <a href=""
+                                class="text-decoration-none mx-2 p-2 border rounded-pill text-secondary text-nowrap text-center">M-Pesa</a>
+                            <a href=""
+                                class="text-decoration-none mx-2 p-2 border rounded-pill text-secondary text-nowrap text-center">Tigo
+                                Pesa</a>
+                            <a href=""
+                                class="text-decoration-none mx-2 p-2 border rounded-pill text-secondary text-nowrap text-center">Airtel
+                                Money</a>
+                            <a href=""
+                                class="text-decoration-none mx-2 p-2 border rounded-pill text-secondary text-nowrap text-center">Halo
+                                Pesa</a>
+                            <a href=""
+                                class="text-decoration-none mx-2 p-2 border rounded-pill text-secondary text-nowrap text-center">T-Pesa</a>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- ********************* cards ****************** -->
+                <hr class="m-2">
+                <div class="row">
+
+                    {% for detail in details %}
+                    {% for info in infos %}
+                    {% for cover in covers %}
+                    {%if cover.user_id != request.user.id and detail.user_id != request.user.id and info.user_id != request.user.id %}
+                    {%if info.user_id == cover.user_id %}
+                    {%if cover.user_id == detail.user_id %}
+                    <div class="col mb-3">
+                        <div class="d-flex justify-content-center">
+                            <div class="card" style="width: 18rem; height:22rem;">
+                                <a href="{% url 'pages:profile' info.user_id %}"><img src="{{ cover.image.url }}" class="card-img-top img-thumbnail border-0" alt="..."
+                                    width="100%" height="auto" style="object-fit: contain;"></a>
+                                
+                                <div class="card-body">
+                                    <a href="{% url 'pages:profile' info.user_id %}" class="text-decoration-none text-dark"><h5 class="card-title font-weight-bold">{{ info.business_name}}</h5></a>
+                                    
+                                    <pre class="text-secondary text-wrap"
+                                        style="font-family:Arial, Helvetica, sans-serif; overflow:hidden; height:5rem;">
+                                    {{ detail.description|linebreaks }}
+                                </pre>
+                                    
+                                </div>
+                                <div class="card-footer border-0">
+                                    <p class="card-text text-muted text-center" style="font-size:small">It's
+                                        {{ detail.distance.km|floatformat:3 }} km from your location</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {%endif%}
+                    {%endif%}
+                    {%endif%}
+                    {% endfor %}
+                    {% endfor %}
+                    {% endfor %}
+
+                </div>
+                <div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-12 col-sm-12 m-1">
+            </div>
+        </div>
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+{% endblock %}

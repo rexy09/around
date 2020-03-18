@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<footer>
+    <!-- ****************** NAVIGATION BAR -->
+    <nav class="fixed-bottom bg-light d-block d-sm-block d-md-block d-lg-none d-xl-none">
+        <div class="d-flex justify-content-around m-1">
+            <div class="d-flex flex-column text-center">
+                <a class="text-decoration-none text-secondary" href="{% url 'index' %}"><i class="fas fa-home"></i></a>
+                <a class="text-decoration-none text-secondary" href="{% url 'index' %}"><small>Home</small></a>
+            </div>
+            <div class="d-flex flex-column text-center">
+                <a class="text-decoration-none text-secondary" href="{% url 'pages:search' %}"><i class="fas fa-search-location"></i></a>
+                <a class="text-decoration-none text-secondary" href="{% url 'pages:search' %}"><small>Search</small></a>
+            </div>
+            <!-- <div class="d-flex flex-column text-center">
+                <a class="text-decoration-none text-secondary" href="#"><i class="far fa-edit"></i></a>
+                <a class="text-decoration-none text-secondary" href=""><small>Post</small></a>
+
+            </div>
+            <div class="d-flex flex-column text-center">
+                <a class="text-decoration-none text-secondary" href="{% url 'pages:orders' %}"><i class="fas fa-envelope"></i></a>
+                <a class="text-decoration-none text-secondary" href="{% url 'pages:orders' %}"><small>Chats</small></a>
+            </div> -->
+            <div class="d-flex flex-column text-center">
+                <a class="text-decoration-none text-secondary" href="{% url 'accounts:myprofile' %}"><i class="fas fa-user"></i></a>
+                <a class="text-decoration-none text-secondary" href="{% url 'accounts:myprofile' %}"><small>Profile</small></a>
+            </div>
+        </div>
+    </nav>
+</footer>
+{% endblock %}

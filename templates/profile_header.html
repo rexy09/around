@@ -1,0 +1,129 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light border-0 py-0">
+    <a class="navbar-brand text-secondary " href="{% url 'index' %}">
+        <div class="d-flex flex-row">
+            <img src="{% static 'icon/around me.png' %}" width="auto" height="40" class="d-inline-block align-top" alt="...">
+            <h4 class="font-weight-bolder mt-2 navlinkclr" style="color: rgb(44, 44, 44);">Around Tz</h4>
+        </div>
+    </a>
+    <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block">
+        <div class="d-flex flex-row mr-auto ml-5 ">
+            <a href="{% url 'index' %}" class=" text-decoration-none text-secondary mx-3 font-weight-bold">
+                <div class="navlinkclr">Home</div>
+            </a>
+            <a href="" class="text-decoration-none text-secondary mx-3 font-weight-bold">
+                <div class="navlinkclr">About</div>
+            </a>
+        </div>
+    </div>
+    <div class="d-flex flex-row">
+        <button class="navbar-toggler border-0 m-2 p-0" type="button" aria-expanded="false" aria-label="Toggle navigation" onclick="openNavSet()">
+            <span class="navbar-toggler-icon text-secondary"></span>
+        </button>
+    </div>
+    <div class="ml-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
+        <a class="text-decoration-none text-secondary m-2" href="{% url 'pages:search' %}">
+            <i class="fas fa-search fa-lg navlinkclr"></i>
+        </a>
+        <!-- <a class="text-decoration-none text-secondary m-2" href="{% url 'pages:orders' %}">
+            <i class="fas fa-envelope fa-lg navlinkclr"></i>
+        </a> -->
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'accounts:myprofile' %}" class="text-decoration-none text-dark font-weight-bold" style="color:#ff9900">
+            <i class="fas fa-user fa-1x navlinkclr text-muted"></i> {{request.user.username}}
+        </a>
+        {% else %}
+        <a class="text-decoration-none text-secondary m-2" href="{% url 'accounts:myprofile' %}">
+            <i class="fas fa-user fa-lg navlinkclr"></i>
+        </a>
+        {% endif %}
+       
+    </div>
+    
+    <div class="ml-2 d-none d-sm-none d-md-none d-lg-block d-xl-block">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'accounts:logout' %}" class="btn text-decoration-none m-1 font-weight-bold btn-sm" style="font-size: 1.2rem; color:azure;background-color:#ff9900">logout</a>
+        {% else %}
+        <a href="{% url 'accounts:login' %}" class="btn text-decoration-none m-1 font-weight-bold btn-sm" style="font-size: 1.2rem; color:azure;background-color:#ff9900">login</a>
+        {% endif %}
+    </div>
+</nav>
+<!-- ************* SIDE NAVIGATION ************** -->
+<div id="mySidenavvset" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn text-secondary" onclick="closeNavSet()">&times;</a>
+    <a href="{% url 'index' %}" class=" text-decoration-none">
+        <h3 class="font-weight-bold navlinkclr">Around Tz</h3>
+    </a>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'accounts:myprofile' %}" class="text-decoration-none text-dark font-weight-bold" style="color:#ff9900">
+        <i class="fas fa-user fa-1x navlinkclr text-muted"></i> {{request.user.username}}
+    </a>
+    {% else %}
+    <a class="text-decoration-none text-secondary m-2" href="{% url 'accounts:myprofile' %}">
+        <i class="fas fa-user fa-1x navlinkclr"></i> Profile
+    </a>
+    {% endif %}
+<a href="#" class="ml-2 text-decoration-none navlinkclr">About</a>
+<a href="#" class="ml-2 text-decoration-none navlinkclr">Contact</a>
+    <div class="d-flex flex-column overflow-auto mb-5 ml-4">
+        <div class="vertical-nav">
+            <h5 class="px-2 pt-3 pb-1 font-weight-bold">Settings</h5>
+            <ul class="nav flex-column  mb-1 ml-3">
+                <h6 class=" font-weight-bold">Edit Profile</h6>
+                <div class="mr-5">
+                    <hr class="m-0">
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link d-flex flex-row side" href="{% url 'accounts:business_info' %}">
+                        <small>Business Info</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex flex-row side" href="{% url 'accounts:business_details' %}">
+                        <small>Business details</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex flex-row side" href="{% url 'accounts:cover' %}">
+                        <small>Cover image</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex flex-row side" href="{% url 'accounts:profileimg' %}">
+                        <small>Profile image</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex flex-row side" href="{% url 'accounts:product' %}">
+                        <small>Products</small>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex flex-row side" href="{% url 'accounts:gallery' %}">
+                        <small>Gallery</small>
+                    </a>
+                </li>
+
+            </ul>
+            <ul class="nav flex-column mb-2 ml-3">
+                <h6 class=" font-weight-bold">Account Settings</h6>
+                <div class="mr-5">
+                    <hr class="m-0">
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link d-flex flex-row side" href="{% url 'accounts:password_change' %}">
+                        <small>Change password</small>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="mr-5" style="margin-bottom: 5rem;">
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'accounts:logout' %}" class="btn text-decoration-none m-1 font-weight-bold btn-sm text-center p-0" style="font-size: 1.2rem; color:azure;background-color:#ff9900">logout</a>
+            {% else %}
+            <a href="{% url 'accounts:login' %}" class="btn text-decoration-none m-1 font-weight-bold btn-sm text-center p-0" style="font-size: 1.2rem; color:azure;background-color:#ff9900">login</a>
+            {% endif %}
+        </div>
+    </div>
+    
+</div>

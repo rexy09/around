@@ -1,0 +1,44 @@
+{% extends 'base2.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block javascript %}
+<script>
+    
+</script>
+{% endblock %}
+
+{% block content %}
+ <!-- ****************** NAVIGATION BAR -->
+ {% include 'profile_header.html' %}
+
+<h1 class="page-header">Gallery Photo Upload</h1>
+<div class="container">
+
+    <div class="row mt-5">
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div>
+
+                <form method="post" enctype="multipart/form-data" id="formUpload">
+                    {% csrf_token %}
+
+                    <button type="submit" class="btn btn-danger ">Delete</button>
+                </form>
+               
+            </div>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <img src="img/shardayyy-photography-fJzmPe-a0eU-unsplash.jpg" alt="" width="100%" height="100%">
+        </div>
+    </div>
+    <div class="row mb-5" style="margin-top: 20px">
+        {% for photo in photos %}
+        <div class="col-4">
+            <img src="{{ photo.image.url }}" class="" width="100%" height="300" style="object-fit: contain;">
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+{% endblock %}

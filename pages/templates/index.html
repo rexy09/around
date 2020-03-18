@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    #svgbg {
+        background-image: url("{% static 'svg/wave.svg' %}");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-size: 100%;
+        height: 100vh;
+        
+    }
+</style>
+
+<body>
+    {% include 'header.html'%}
+    <!--********** Contents ************-->
+      <div style="background-color: #ff9900;" class="m-0 w-100">
+          <div class="w-50">
+            <h1 class=" text-light m-0 font-weight-bold pl-5 pt-5 display-3 d-none d-lg-block d-xl-block">Free Business Promotion</h1>
+            <h1 class=" text-light m-0 font-weight-bold pl-5 pt-5 display-3 d-none d-md-block d-lg-none">Free Business Promotion</h1>
+            <h1 class=" text-light m-0 font-weight-bold pl-4 pt-4 display-4 d-block d-sm-block d-md-none">Free Business Promotion</h1>
+          </div>
+
+          <div class="w-75">
+            <p class=" text-light m-0 pl-5 pt-2 lead">And easy search for nearby Services.</p>
+          </div>
+
+          <div class="d-flex justify-content-center mt-5 pb-2">
+              <a href="{% url 'accounts:signup' %}" class="btn btn-light font-weight-bold btn-lg" style="color: #ff9900;">Get Started Now</a>
+
+          </div>
+        
+        
+    </div>
+    <div class="m-0 p-0" style="transform: scaleY(-1) scaleX(1);">
+        <svg xmlns="#" viewBox="0 0 1440 320">
+            <path fill="#ff9900" fill-opacity="1" d="M0,192L80,165.3C160,139,320,85,480,96C640,107,800,181,960,202.7C1120,224,1280,192,1360,176L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+
+          </svg>
+
+    </div>
+    <!-- <div class="mt-0 p-0 w-100">
+        <img src="{% static  'svg/wave.svg' %}" class="" alt="" height="auto" width="100%" style="transform: scaleY(-1) scaleX(-1);">
+    </div> -->
+  
+    <div class="container mb-5">
+        <div class="mt-0 p-0">
+            <!-- <img src="{% static 'img/ecommerce-2140603_1280.jpg' %}" class="" alt="" height="auto" width="100%"> -->
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="my-4">
+                    <h1 class="font-weight-bold text-center">Service Categories</h1>
+                </div>
+                <div style="height: 5px; background-color:#ff9900; width:100px;" class="ml-auto mr-auto mt-2 mb-3">
+                </div>
+                <div class="d-flex flex-row overflow-auto justify-content-between">
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #ff9900; border-radius: 100px;">
+                            <a class="" href="{% url 'pages:search_cat' query='money agent'%}">
+                                <img src="{% static 'icon/money-1.png' %}" alt="" width="40" height="40" class="m-4">
+                            </a>
+                        </div>
+                        <div class="p-1 text-center text-wrap" style="width: 90px;">
+                            <p class="font-weight-bold text-wrap">Money Agents</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #ff9900; border-radius: 100px;">
+                            <a class="" href="{% url 'pages:search_cat' query='fashion' %}">
+                                <img src="{% static 'icon/clothing-hanger.png' %}" alt="" width="40" height="40"
+                                    class="m-4">
+                            </a>
+
+                        </div>
+                        <div class="p-1 text-center text-wrap" style="width: 90px;">
+                            <p class="font-weight-bold">Fashion</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #ff9900; border-radius: 100px;">
+                            <a class="" href="{% url 'pages:search_cat' query='mobile & accessories'%}">
+                                <img src="{% static 'icon/png' %}" alt="" width="40" height="40" class="m-4">
+                            </a>
+
+                        </div>
+                        <div class="p-1 text-center text-wrap" style="width: 90px;">
+                            <p class="font-weight-bold text-wrap">Mobile & Accessories</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #ff9900; border-radius: 100px;">
+                            <a class="" href="{% url 'pages:search_cat' query='restaurant'%}">
+                                <img src="{% static 'icon/restaurant.png' %}" alt="" width="40" height="40" class="m-4">
+                            </a>
+
+                        </div>
+                        <div class="py-1 text-center text-wrap" style="width: 90px;">
+                            <p class="font-weight-bold">Restaurants</p>
+                        </div>
+                    </div>
+                    <!-- <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #3333cc; border-radius: 100px;">
+                            <img src="{% static 'icon/shopping-cart.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Shops</h5>
+                        </div>
+                    </div>
+                   
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #9900cc; border-radius: 100px;">
+                            <img src="{% static 'icon/atm.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Banks/ATM</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #cc0099; border-radius: 100px;">
+                            <img src="{% static 'icon/sewing-machine.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Tailors</h5>
+                        </div>
+                    </div>
+                   
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #ff6600; border-radius: 100px;">
+                            <img src="{% static 'icon/hinge.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Hardware Shops</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #ff9900; border-radius: 100px;">
+                            <img src="{% static 'icon/wheel.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Automobile Repair</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #996633; border-radius: 100px;">
+                            <img src="{% static 'icon/handsaw.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Carpentry</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #cc0000; border-radius: 100px;">
+                            <img src="{% static 'icon/beer.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Bars/Pubs</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #009933; border-radius: 100px;">
+                            <img src="{% static 'icon/bed.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Hotels</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #339966; border-radius: 100px;">
+                            <img src="{% static 'icon/hospital-buildings.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Hospitals</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #009999; border-radius: 100px;">
+                            <img src="{% static 'icon/drugs.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Pharmacy</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #006699; border-radius: 100px;">
+                            <img src="{% static 'icon/beauty-saloon.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Saloon</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #3366cc; border-radius: 100px;">
+                            <img src="{% static 'icon/cleaver.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Butcher</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #996633; border-radius: 100px;">
+                            <img src="{% static 'icon/pie.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Backery</h5>
+                        </div>
+                    </div>
+                  
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #666699; border-radius: 100px;">
+                            <img src="{% static 'icon/laptop.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Computer</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 " style="background-color: #000066; border-radius: 100px;">
+                            <img src="{% static 'icon/film.png' %}" alt="" width="70" height="70" class="m-4">
+                        </div>
+                        <div class="p-1 text-center text-wrap">
+                            <h5 class="font-weight-bold">Cinema</h5>
+                        </div>
+                    </div> -->
+                    <!-- Next/previous controls -->
+                    <!-- <a class="prev text-muted" onclick="plusSlides(-1)">&#10094;</a>
+                    <a class="next text-muted" onclick="plusSlides(1)">&#10095;</a> -->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        </div>
+    </div>
+
+    <div class="">
+        <svg xmlns="#" viewBox="0 0 1440 320">
+            <path fill="#ff9900" fill-opacity="1" d="M0,32L80,69.3C160,107,320,181,480,181.3C640,181,800,107,960,90.7C1120,75,1280,117,1360,138.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+          </svg>
+
+    </div>
+    <div style="background-color: #ff9900; height:75px" class="m-0 w-100">
+
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+{% endblock %}
