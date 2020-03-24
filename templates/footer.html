@@ -10,15 +10,15 @@
                 <a class="text-decoration-none text-secondary" href="{% url 'index' %}"><small>Home</small></a>
             </div>
             <div class="d-flex flex-column text-center">
-                <a class="text-decoration-none text-secondary" href="{% url 'pages:search' %}"><i class="fas fa-search-location"></i></a>
-                <a class="text-decoration-none text-secondary" href="{% url 'pages:search' %}"><small>Search</small></a>
-            </div>
-            <!-- <div class="d-flex flex-column text-center">
-                <a class="text-decoration-none text-secondary" href="#"><i class="far fa-edit"></i></a>
-                <a class="text-decoration-none text-secondary" href=""><small>Post</small></a>
-
+                <a class="text-decoration-none text-secondary" href="{% url 'pages:search' %}" onclick="getcoords()"><i class="fas fa-search-location"></i></a>
+                <a class="text-decoration-none text-secondary" href="{% url 'pages:search' %}" onclick="getcoords()"><small>Search</small></a>
             </div>
             <div class="d-flex flex-column text-center">
+                <a class="text-decoration-none text-secondary" href="{% url 'post:posts' %}"><i class="far fa-edit"></i></a>
+                <a class="text-decoration-none text-secondary" href="{% url 'post:posts' %}"><small>Post</small></a>
+
+            </div>
+            <!-- <div class="d-flex flex-column text-center">
                 <a class="text-decoration-none text-secondary" href="{% url 'pages:orders' %}"><i class="fas fa-envelope"></i></a>
                 <a class="text-decoration-none text-secondary" href="{% url 'pages:orders' %}"><small>Chats</small></a>
             </div> -->

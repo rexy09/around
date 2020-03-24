@@ -12,44 +12,44 @@
                 class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-xs-12 d-none d-sm-none d-md-none d-lg-block d-xl-block p-0">
                 <h5 class="font-weight-bold p-1 ml-2">Settings</h5>
                 <div class="vertical-nav">
-                    <ul class="nav flex-column ml-3">
+                    <div class="nav flex-column ml-3">
                         <h6 class=" font-weight-bold ml-2">Edit Profile</h6>
                         <div class="mr-5">
                             <hr class="m-0">
                         </div>
                         
-                        <li class="nav-item">
+                        
                             <a class="nav-link d-flex flex-row" href="{% url 'accounts:business_info' %}">
-                                <small>Business Info</small>
+                                <small class="text-dark navlinkclr">Business Info</small>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                        
+                        
                             <a class="nav-link d-flex flex-row" href="{% url 'accounts:business_details' %}">
-                                <small>Business details</small>
+                                <small class="text-dark navlinkclr">Business details</small>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                        
+                        
                             <a class="nav-link d-flex flex-row" href="{% url 'accounts:cover' %}">
-                                <small>Cover image</small>
+                                <small class="text-dark navlinkclr">Cover image</small>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                        
+                        
                             <a class="nav-link d-flex flex-row" href="{% url 'accounts:profileimg' %}">
-                                <small>Profile image</small>
+                                <small class="text-dark navlinkclr">Profile image</small>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                        
+                        
                             <a class="nav-link d-flex flex-row" href="{% url 'accounts:product' %}">
-                                <small>Products</small>
+                                <small class="text-dark navlinkclr">Products</small>
                             </a>
-                        </li>
-                        <li class="nav-item">
+                        
+                        
                             <a class="nav-link d-flex flex-row" href="{% url 'accounts:gallery' %}">
-                                <small>Gallery</small>
+                                <small class="text-dark navlinkclr">Gallery</small>
                             </a>
-                        </li>
+                        
 
-                    </ul>
+                    </div>
 
                     <ul class="nav flex-column ml-3">
                         <h6 class=" font-weight-bold ml-2">Account Settings</h6>
@@ -58,7 +58,7 @@
                         </div>
                         <li class="nav-item">
                             <a class="nav-link d-flex flex-row" href="{% url 'accounts:password_change' %}">
-                                <small>Change password</small>
+                                <small class="navlinkcl text-dark">Change password</small>
                             </a>
                         </li>
 
@@ -171,8 +171,8 @@
 
                 </div>
                 <!-- Mapbox CDN -->
-                <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.js'></script>
-                <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.0/mapbox-gl.css' rel='stylesheet' />
+                <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+                <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
 
                 <div class="row mt-5 p-2">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -189,8 +189,8 @@
                                 'pk.eyJ1IjoicmV4eTA5IiwiYSI6ImNrM2V3YnpkMTAybHYzbW9kbnQxMnY0NnIifQ.ttNaEZzE8nFpHXyPBZTnFQ';
 
                                 
-                                var lng = {{detail.longitude}};
-                                var lat = {{detail.latitude}};
+                                var lng = '{{detail.longitude}}';
+                                var lat = '{{detail.latitude}}';
                                 
 
                             var map = new mapboxgl.Map({
@@ -230,7 +230,7 @@
                             map.addControl(new mapboxgl.NavigationControl());
                         </script>
                         {% empty %}
-                        <h4 class="text-secondary">Location is not set </h4>
+                        <h4 class="text-secondary text-center">Location is not set </h4>
                         {% endfor %}
 
                     </div>

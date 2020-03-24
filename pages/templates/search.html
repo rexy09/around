@@ -14,27 +14,27 @@
                     <hr class="m-0">
                 </div>
                 <div class="vertical-nav">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link d-flex flex-row" href="{% url 'pages:search_cat' query='money agent'%}">
-                                <small>Money Agents</small>
+                    <div class="nav flex-column">
+                        
+                            <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold" href="{% url 'pages:search_cat' query='money agent'%}">
+                                <span class="navlinkclr">Money Agents</span>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex flex-row" href="{% url 'pages:search_cat' query='mobile & accessories'%}">
-                                <small>Mobile & Accessories</small>
+                        
+                        
+                            <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold" href="{% url 'pages:search_cat' query='mobile & accessories'%}">
+                                <span class="navlinkclr">Mobile & Accessories</span>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex flex-row" href="{% url 'pages:search_cat' query='fashion' %}">
-                                <small>Fashion</small>
+                        
+                        
+                            <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold" href="{% url 'pages:search_cat' query='fashion' %}">
+                                <span class="navlinkclr">Fashion</span>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex flex-row" href="{% url 'pages:search_cat' query='restaurant'%}">
-                                <small>Restaurants</small>
+                        
+                        
+                            <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold" href="{% url 'pages:search_cat' query='restaurant'%}">
+                                <span class="navlinkclr">Restaurants</span>
                             </a>
-                        </li>
+                        
                         <!-- <li class="nav-item">
                             <a class="nav-link d-flex flex-row" href="#">
                                 <small>Tailor</small>
@@ -100,7 +100,7 @@
                                 <small>Bakery</small>
                             </a>
                         </li> -->
-                    </ul>
+                    </div>
                 </div>
             </div>
             <div class="col mt-1">
@@ -110,7 +110,7 @@
                             {% csrf_token %}
                             <div class="col-12">
                                 <div class="input-group mb-2">
-                                    <input type="text" class="form-control rounded-pill" placeholder="Search" name="query">
+                                    <input type="text" class="form-control rounded-pill" placeholder="Search by location, category, name etc" name="query">
                                     <button type="submit"
                                         class="btn text-secondary rounded-pill ml-2"><i
                                             class="fas fa-search fa-lg navlinkclr"></i></button>

@@ -12,27 +12,27 @@
                 class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 d-none d-sm-none d-md-none d-lg-block d-xl-block p-0">
                 <h5 class="font-weight-bold ml-1">Search By Category</h5>
                 <div class="vertical-nav">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link d-flex flex-row" href="#">
-                                <small>Money Agents</small>
+                    <div class="nav flex-column">
+                        
+                            <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold" href="{% url 'pages:search_cat' query='money agent'%}">
+                                <span class="navlinkclr">Money Agents</span>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex flex-row" href="#">
-                                <small>Mobile & Accessories</small>
+                        
+                        
+                            <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold" href="{% url 'pages:search_cat' query='mobile & accessories'%}">
+                                <span class="navlinkclr">Mobile & Accessories</span>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex flex-row" href="#">
-                                <small>Fashion</small>
+                        
+                        
+                            <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold" href="{% url 'pages:search_cat' query='fashion' %}">
+                                <span class="navlinkclr">Fashion</span>
                             </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link d-flex flex-row" href="#">
-                                <small>Restaurants</small>
+                        
+                        
+                            <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold" href="{% url 'pages:search_cat' query='restaurant'%}">
+                                <span class="navlinkclr">Restaurants</span>
                             </a>
-                        </li>
+                        
                         <!-- <li class="nav-item">
                             <a class="nav-link d-flex flex-row" href="#">
                                 <small>Tailor</small>
@@ -98,7 +98,7 @@
                                 <small>Bakery</small>
                             </a>
                         </li> -->
-                    </ul>
+                    </div>
                 </div>
             </div>
 
@@ -221,8 +221,8 @@
                                 'pk.eyJ1IjoicmV4eTA5IiwiYSI6ImNrM2V3YnpkMTAybHYzbW9kbnQxMnY0NnIifQ.ttNaEZzE8nFpHXyPBZTnFQ';
 
                                 
-                                var lng = {{detail.longitude}};
-                                var lat = {{detail.latitude}};
+                                var lng = '{{detail.longitude}}';
+                                var lat = '{{detail.latitude}}';
                                 
 
                             var map = new mapboxgl.Map({

@@ -1,0 +1,93 @@
+{% load static %}
+<div style="background-color: #ff9900;" class="m-0 w-100 p-5">
+    <div class="row w-100 m-0">
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xs-12">
+            <div class="d-flex justify-content-start">
+                <img src="{% static 'icon/around me.png' %}" alt="" width="199" height="120" class="">
+            </div>
+
+            <h2 class=" font-weight-bold ml-3">Around Tz</h2>
+
+
+        </div>
+        <div class="col">
+            <div class="row w-100">
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class=" d-flex justify-content-start">
+                        <div>
+                            <h4 class="mt-5">Information</h4>
+                            <div class="d-flex flex-column mt-2 ml-3">
+
+                                <div class=" d-flex flex-row mt-2">
+                                    <a href="{% url 'pages:about' %}" class=" text-decoration-none text-light">About us</a>
+                                </div>
+                                <div class=" d-flex flex-row mt-2">
+                                    <a href="{% url 'pages:contact' %}" class=" text-decoration-none text-light">Contact us</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class=" d-flex justify-content-start">
+                        <div>
+                            <h4 class=" mt-5">Connect +</h4>
+
+                            <div class="d-flex flex-column mt-2">
+
+                                <div class=" d-flex flex-row">
+                                    <i class="fab fa-instagram fa-lg mx-3"></i>
+                                    <h6 class=" text-muted my-1">Instagram</h3>
+                                </div>
+                                <div class=" d-flex flex-row">
+                                    <i class="fab fa-twitter fa-lg mx-3"></i>
+                                    <h6 class=" text-muted my-1">Twitter</h3>
+                                </div>
+                                <div class=" d-flex flex-row">
+                                    <i class="fab fa-facebook fa-lg mx-3"></i>
+                                    <h6 class=" text-muted my-1">Facebook</h3>
+                                </div>
+                                <div class=" d-flex flex-row">
+                                    <i class="fab fa-linkedin-in fa-lg mx-3"></i>
+                                    <h6 class=" text-muted my-1">Linked In</h3>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <div class=" d-flex justify-content-start">
+                <form action="" class="mt-5">
+                    <label for="" class="h4">Subscribe for more info.</label>
+                    <input type="text" name="subscribe" class=" form-control" id="" placeholder="Subscribe">
+                    <button type="submit" class=" btn btn-light font-weight-bold my-2"
+                        style="color: #ff9900;">Subscribe</button>
+                </form>
+            </div>
+
+
+
+        </div>
+
+    </div>
+    <hr class=" bg-light">
+    <div class=" d-flex justify-content-center">
+        <p class=" text-muted">© 2020 AroundTz</p>
+    </div>
+
+</div>

@@ -13,7 +13,8 @@ import math
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='author', on_delete=models.CASCADE,)
     title = models.CharField(max_length=100)
-    content = models.TextField()
+    content = models.TextField(blank=True, null=True)
+    price = models.FloatField(null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add= True)
     date_updated = models.DateTimeField(auto_now= True)
     likes = models.IntegerField(default=0)
@@ -94,10 +95,10 @@ class Post(models.Model):
 
 # <h1>Published {{ postobj.whenpublished }}</h1>
 
-class Image(models.Model):
-    post = models.ForeignKey(Post, related_name='images', on_delete=models.CASCADE)
-    file = models.ImageField(upload_to='upload')
-    position = models.PositiveSmallIntegerField(default=0)
+class PostImage(models.Model):
+    # post = models.ForeignKey(Post, related_name='post_img', on_delete=models.CASCADE)
+    file = models.ImageField(upload_to='post_img/')
+    # position = models.PositiveSmallIntegerField(default=0)
     date_updated= models.DateTimeField(auto_now= True)
 
 

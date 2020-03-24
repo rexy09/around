@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<body>
+    {% include 'header.html' %}
+
+    <div class=" container">
+        <div class="row">
+            <div class="col-12 mt-2">
+                <form action="{% url 'pages:search' %}" method="POST">
+                    {% csrf_token %}
+                    <div class=" form-row">
+
+                        <div class="col-10">
+                            <div class="mb-2">
+                                <a href="{% url 'post:add_post' %}">
+                                    <input type="text"
+                                        class="form-control border-top-0 border-left-0 border-right-0 border-bottom"
+                                        placeholder="What are you selling?" name="query">
+                                </a>
+                                
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <a href="{% url 'post:add_post' %}">                               
+                                <i class="fas fa-edit fa-lg navlinkclr m-2"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                   
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% include 'footer.html' %}
+</body>
+{% endblock %}
