@@ -6,10 +6,16 @@ from django.contrib.gis.db import models
 from django.contrib.gis.geos import Point
 from django.contrib.gis.geos import GEOSGeometry
 
+from activity_log.models import UserMixin
+
+# Only for LAST_ACTIVITY = True
+# class User(AbstractUser, UserMixin):
+#     pass
+
 
 # Create your models here.
 
-class User(AbstractUser):
+class User(AbstractUser, UserMixin):
     USER_TYPE_CHOICES = (
         (0,'Null'),
         (1,'Normal'),
@@ -48,17 +54,17 @@ class BusinessInfo(models.Model):
  
  
 class BusinessDetails(models.Model):
-    BUSINESS_CHOICES = [
-        ('', 'Business type'),
-        ('fashion', 'Fashion'),
-        ('mobile & accessories','Mobile & Accessories'),
-        ('restaurant', 'Restaurant'),
-        ('money agent', 'Money Agent'),
-        ('other', 'Other'),    
-    ]
+    # BUSINESS_CHOICES = [
+    #     ('', 'Business type'),
+    #     ('fashion', 'Fashion'),
+    #     ('mobile & accessories','Mobile & Accessories'),
+    #     ('restaurant', 'Restaurant'),
+    #     ('money agent', 'Money Agent'),
+    #     ('other', 'Other'),    
+    # ]
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, primary_key=True, unique=True)
     description = models.TextField(null=True, blank=True)
-    business_category = models.CharField(max_length=100, null=True, blank=True, choices=BUSINESS_CHOICES)
+    # business_category = models.CharField(max_length=100, null=True, blank=True, choices=BUSINESS_CHOICES)
     longitude = models.DecimalField(max_digits=19, decimal_places=16, null=True, blank=True)
     latitude = models.DecimalField(max_digits=19, decimal_places=16, null=True, blank=True)
     location = models.PointField(srid=4326, null=True, blank=True)
@@ -82,21 +88,10 @@ class CoverImg(models.Model):
         verbose_name_plural = 'coverimgs'
 
 
-
 class ProfileImg(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='user_pimg', on_delete = models.CASCADE, primary_key=True, unique=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, primary_key=True, unique=True)
     image = models.ImageField(upload_to='profile_image/')
     uploaded_at = models.DateTimeField(auto_now=True)
-    
-    
-
-class Products(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
-    title = models.CharField(max_length=50)
-    details = models.TextField(null=True, blank=True)
-    price = models.FloatField(null=True, blank=True)
-    image = models.ImageField(upload_to='products_image/')
-    date_updated = models.DateTimeField(auto_now=True)
     
    
 class Gallery(models.Model):

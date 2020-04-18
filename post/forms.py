@@ -6,20 +6,23 @@ from PIL import Image
 
 
 class PostForm(forms.ModelForm):
-    title = forms.CharField(label='', widget=forms.TextInput(attrs={'placeholder':'title'}))
-    content = forms.CharField(label='', widget=forms.Textarea(attrs={'placeholder':'Describe your product here', 'rows':'4'}))
+    title = forms.CharField(label='Title', widget=forms.TextInput(attrs={'placeholder':'Title'}))
+    content = forms.CharField(label='Description', widget=forms.Textarea(attrs={'placeholder':'Describe your post here.', 'rows':'4'}))
+    price = forms.FloatField(label='Price in TSh', widget=forms.NumberInput(attrs={}))
     
     class Meta:
         model = Post
         fields = [
             'title',
             'content',
-            'price'
+            'phone',
+            'price',
+            'image',
         ]
 
 
 class PostImgForm(forms.ModelForm):
-    file = forms.FileField( widget=forms.FileInput(attrs={'multiple':'', }))
+    file = forms.FileField(label='Add Images', widget=forms.ClearableFileInput(attrs={'multiple': True,}))
     class Meta:
         model = PostImage
         fields = ['file', ]

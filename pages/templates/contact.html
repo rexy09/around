@@ -1,21 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
+
 
 {% block content %}
 
 <body>
+    <style>
+        #svgbg {
+            background-image: url("{% static 'img/tablet.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+
+        }
+       
+       
+    </style>
     {% include 'header.html' %}
 
-    <div style="background-color: #ff9900;" class="p-0 m-0">
-        <div class="row w-100 m-0">
-            <div class="col-12 w-100 p-0">
-                <div class=" d-flex justify-content-center">
-                    <h1 class=" font-weight-bold my-5 text-center display-3 text-light px-1">Contact Us</h1>
+    <div style="background-color: #ff9900;" class="p-0 m-0" id="svgbg">
+        <div style="background: #00000070;">
+            <div class="row w-100 m-0">
+                <div class="col-12 w-100 p-0">
+                    <div class=" d-flex justify-content-center">
+                        <h1 class=" font-weight-bold my-5 text-center display-3 text-light px-1">Contact Us</h1>
+                    </div>
+    
                 </div>
-
+    
             </div>
-
-        </div>
 
         <div class="row w-100 m-0">
             <div class="col">
@@ -39,13 +54,13 @@
             </div>
 
         </div>
+        </div>
+       
+
     </div>
 
-    <div class="cotainer">
-        <div class="row w-100 my-5">
-            <div class="col">
-
-            </div>
+    <div class="container">
+        <div class="row mt-5">
             <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 m-3">
 
                 <div class="row mb-5 p-2">
@@ -53,8 +68,14 @@
                         <h1 class="">Reach out to us!</h1>
                         <div style="height: 5px; background-color:#ff9900; width:80px;"
                             class="ml-aut mr-auto mt-2 mb-3"></div>
-                        <form>
-                            <div class="form-row">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form|crispy}}
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-light font-weight-bold w-50 text-light p-2"
+                                style="background-color: #ff9900;">Send</button>
+                            </div>
+                            <!-- <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputEmail4">Full name</label>
                                     <input type="text" class="form-control" id="inputEmail4" placeholder="Full name">
@@ -76,53 +97,83 @@
                             </div>
 
                             <button type="submit" class="btn btn-light font-weight-bold w-50 text-light p-2"
-                                style="background-color: #ff9900;">Submit</button>
+                                style="background-color: #ff9900;">Send</button> -->
                         </form>
                     </div>
 
                     <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <h1>Other ways to connect</h1>
-                        <div style="height: 5px; background-color:#ff9900; width:80px;"
-                            class="ml-aut mr-auto mt-2 mb-3"></div>
 
-                        <div class="d-flex flex-column">
-
-                            <div class=" d-flex flex-row">
-                                <i class="fab fa-instagram fa-2x mx-3"></i>
-                                <h4 class=" text-muted my-1">Instagram</h3>
+                        <div class="">
+                            <div class=" px-auto">
+                                <img src="{% static 'img/drawkit-support-man.png' %}" alt="" width="100%" height="auto"
+                                class="">
                             </div>
-                            <div class=" d-flex flex-row">
-                                <i class="fab fa-twitter fa-2x mx-3"></i>
-                                <h4 class=" text-muted my-1">Twitter</h3>
-                            </div>
-                            <div class=" d-flex flex-row">
-                                <i class="fab fa-facebook fa-2x mx-3"></i>
-                                <h4 class=" text-muted my-1">Facebook</h3>
-                            </div>
-                            <div class=" d-flex flex-row">
-                                <i class="fab fa-linkedin-in fa-2x mx-3"></i>
-                                <h4 class=" text-muted my-1">Linked In</h3>
-                            </div>
-
-
+                           
                         </div>
-
-
-
 
                     </div>
 
                 </div>
 
             </div>
-            <div class="col">
+
+        </div>
+
+        <div class="row mb-5">
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h1>Other ways to connect</h1>
+                <div style="height: 5px; background-color:#ff9900; width:100px;"
+                    class="ml-aut mr-auto mt-2 mb-3"></div>
+
+                <div class="d-flex flex-row mb-3">
+
+                    <div class=" d-flex flex-row">
+                        <a href="https://www.instagram.com/around.tz/" class=" text-decoration-none text-secondary">
+                            <i class="fab fa-instagram fa-2x mr-2" style="color: #ff9900;"></i>
+                            <span class=" text-muted mr-2 font-weight-bold">@around.tz</span>
+                        </a>
+                       
+                    </div>
+                    <div class=" d-flex flex-row">
+                        <a href="https://twitter.com/around_tz" class=" text-decoration-none text-secondary">
+                            <i class="fab fa-twitter fa-2x mx-2" style="color: #ff9900;"></i>
+                        <span class=" text-muted font-weight-bold">@around_tz</span>
+                        </a>
+                        
+                    </div>
+
+                </div>
+
+                <div class="d-flex flex-row mb-3">
+
+                    <div class=" d-flex flex-row">
+                        <a href="https://www.instagram.com/around.tz/" class=" text-decoration-none text-secondary">
+                            <i class="far fa-envelope fa-2x mr-2" style="color: #ff9900;"></i>
+                            <span class=" text-muted font-weight-bold">aroundtz20@gmail.com</span>
+                        </a>
+                       
+                    </div>
+                   
+
+                </div>
+                <!-- <div class="d-flex flex-row mb-5">
+                    <div class=" d-flex flex-row">
+                        <i class="fab fa-facebook fa-2x mr-2"></i>
+                        <span class=" text-muted my-1 font-weight-bold">aroundtz</span>
+                    </div>
+                    <div class=" d-flex flex-row">
+                        <i class="fab fa-linkedin-in fa-2x mx-2"></i>
+                        <span class=" text-muted my-1 font-weight-bold">aroundtz</span>
+                    </div>
+                </div> -->
 
             </div>
 
         </div>
 
 
-        {% include 'nav_footer.html' %}
+       
 
 
     </div>
@@ -130,7 +181,22 @@
 
 
 
+    <div style="background-color: #ff9900;" class="m-0 w-100">
+        
+        <div class=" px-5 py-2">
+            <hr class=" bg-light m-0">
+        </div>
+        
+        <div class=" d-flex justify-content-center">
+          
+            <p class=" text-dark font-weight-bold">  &copy; <span id="year"></span> AroundTz</p>
+        </div>
+        <script>
+            document.getElementById("year").innerHTML = new Date().getFullYear();
+        </script>
 
+    </div>
+    
    
 </body>
 

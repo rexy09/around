@@ -1,7 +1,7 @@
 {% load static %}
 <header>
     <!-- ****************** NAVIGATION BAR -->
-    <nav class="navbar navbar-expand-lg navbar-light border-0 py-0">
+    <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 bg-light">
         <a class="navbar-brand text-secondary " href="{% url 'index' %}">
             <div class="d-flex flex-row">
                 <img src="{% static 'icon/around me.png' %}" width="auto" height="40" class="d-inline-block align-top"
@@ -41,8 +41,14 @@
             {% if request.user.is_authenticated %}
             <a href="{% url 'accounts:myprofile' %}" class="text-decoration-none text-secondary font-weight-bold m-2"
                 >
-                <i class="fas fa-user fa-lg navlinkclr text-secondary"></i> <span class="navlinkclr">{{request.user.username}}</span>
-            </a>
+                {% if not user.profileimg.image.url %}
+                <i class="fas fa-user fa-lg navlinkclr"></i>
+                <span class="navlinkclr">{{user.username}}</span>
+                {% else %}
+                <img src="{{ user.profileimg.image.url }}" alt="" srcset="" width="30" height="30" class="border rounded-circle mr-2 border-muted"><span class="navlinkclr">{{user.username}}</span>
+                {% endif %}
+            </a>         
+            
             {% else %}
             <a class="text-decoration-none text-secondary m-2" href="{% url 'accounts:myprofile' %}">
                 <i class="fas fa-user fa-lg navlinkclr"></i>
@@ -72,7 +78,12 @@
         {% if request.user.is_authenticated %}
         <a href="{% url 'accounts:myprofile' %}" class="text-decoration-none text-light font-weight-bold"
             style="color:#ff9900">
-            <i class="fas fa-user fa-1x navlinkclr text-secondary"></i> <span class="navlinkclr">{{request.user.username}}</span>
+            {% if not user.profileimg.image.url %}
+                <i class="fas fa-user fa-lg navlinkclr"></i>
+                <span class="navlinkclr">{{user.username}}</span>
+                {% else %}
+                <img src="{{ user.profileimg.image.url }}" alt="" srcset="" width="30" height="30" class="border rounded-circle mr-2 border-muted"><span class="navlinkclr">{{user.username}}</span>
+                {% endif %}
         </a>
         {% else %}
         <a class="text-decoration-none text-light font-weight-bold" href="{% url 'accounts:myprofile' %}">
@@ -80,12 +91,17 @@
         </a>
         {% endif %}
         <a class="text-decoration-none text-light navlinkclr mt-1 font-weight-bold" href="{% url 'pages:search' %}">
-            <i class="fas fa-search fa-1x navlinkclr text-secondary"></i> <span class=" text-light navlinkclr">Search</span>
+            <i class="fas fa-search fa-1x navlinkclr text-light"></i> 
+            <span class=" text-light navlinkclr">Search</span>
+        </a>
+        <a class="text-decoration-none text-light navlinkclr mt-1 font-weight-bold" href="{% url 'post:posts' %}">
+            <i class="fas fa-th fa-1x navlinkclr text-light"></i>
+            <span class=" text-light navlinkclr">Posts</span>
         </a>
 
         <div class="d-flex flex-column overflow-auto mb-2 ml-4">
             <div class="vertical-nav">
-                <h5 class="pt-3 font-weight-bold text-secondary">Search By Category</h5>
+                <h5 class="pt-3 font-weight-bold text-light">Search By Category</h5>
                 <div class="mr-4">
                     <hr class="m-0 bg-secondary">
                 </div>

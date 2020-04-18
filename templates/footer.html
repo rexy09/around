@@ -1,21 +1,26 @@
-{% extends 'base.html' %}
 {% load static %}
-{% block content %}
 <footer>
-    <!-- ****************** NAVIGATION BAR -->
-    <nav class="fixed-bottom bg-light d-block d-sm-block d-md-block d-lg-none d-xl-none">
+    <!-- ****************** NAVIGATION BAR ********************** -->
+    <nav class="fixed-bottom bg-dark d-block d-sm-block d-md-block d-lg-none d-xl-none border-top">
         <div class="d-flex justify-content-around m-1">
             <div class="d-flex flex-column text-center">
-                <a class="text-decoration-none text-secondary" href="{% url 'index' %}"><i class="fas fa-home"></i></a>
-                <a class="text-decoration-none text-secondary" href="{% url 'index' %}"><small>Home</small></a>
+                <a class="text-decoration-none text-light" href="{% url 'index' %}">
+                    <div><i class="fas fa-home navlinkclr"></i></div>
+                    <div><small class="navlinkclr">Home</small></div>
+                </a>
+                <a class="text-decoration-none text-secondary" href="{% url 'index' %}"></a>
             </div>
             <div class="d-flex flex-column text-center">
-                <a class="text-decoration-none text-secondary" href="{% url 'pages:search' %}" onclick="getcoords()"><i class="fas fa-search-location"></i></a>
-                <a class="text-decoration-none text-secondary" href="{% url 'pages:search' %}" onclick="getcoords()"><small>Search</small></a>
+                <a class="text-decoration-none text-light" href="{% url 'pages:search' %}">
+                    <div><i class="fas fa-search-location navlinkclr"></i></div>
+                    <div><small class=" navlinkclr">Search</small></div>
+                </a>
             </div>
             <div class="d-flex flex-column text-center">
-                <a class="text-decoration-none text-secondary" href="{% url 'post:posts' %}"><i class="far fa-edit"></i></a>
-                <a class="text-decoration-none text-secondary" href="{% url 'post:posts' %}"><small>Post</small></a>
+                <a class="text-decoration-none text-light" href="{% url 'post:posts' %}">
+                    <div><i class="fas fa-th navlinkclr"></i></div>
+                    <div><small class=" navlinkclr">Posts</small></div>
+                </a>
 
             </div>
             <!-- <div class="d-flex flex-column text-center">
@@ -23,10 +28,30 @@
                 <a class="text-decoration-none text-secondary" href="{% url 'pages:orders' %}"><small>Chats</small></a>
             </div> -->
             <div class="d-flex flex-column text-center">
-                <a class="text-decoration-none text-secondary" href="{% url 'accounts:myprofile' %}"><i class="fas fa-user"></i></a>
-                <a class="text-decoration-none text-secondary" href="{% url 'accounts:myprofile' %}"><small>Profile</small></a>
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'accounts:myprofile' %}" class="text-decoration-none text-light" style="color:#ff9900">
+                   
+                    {% if not user.profileimg.image.url %}
+                    <div>
+                        <i class="fas fa-user navlinkclr"></i>
+                    </div>
+                    <div><small class=" navlinkclr">Profile</small></div>
+                    {% else %}
+                    <div>
+                        <img src="{{ user.profileimg.image.url }}" alt="" srcset="" width="20" height="20"
+                            class="border rounded-circle border-muted">
+                    </div>
+                    <div><small class=" navlinkclr">Profile</small></div>
+                    {% endif %}
+                </a>
+                {% else %}
+                <a class="text-decoration-none text-light" href="{% url 'accounts:myprofile' %}">
+                    <div><i class="fas fa-user navlinkclr"></i></div>
+                    <div><small class=" navlinkclr">Profile</small></div>
+                </a>
+                {% endif %}
+
             </div>
         </div>
     </nav>
 </footer>
-{% endblock %}

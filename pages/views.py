@@ -1,10 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Q
-from accounts.models import BusinessDetails, CoverImg, BusinessInfo, ProfileImg, Products, Gallery
+from accounts.models import BusinessDetails, CoverImg, BusinessInfo, ProfileImg, Gallery
+from post.models import *
 from django.contrib.gis.geos import fromstr
 from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos import Point
 import geocoder # Getting user location
+from django.core.mail import send_mail, BadHeaderError
+from .forms import ContactForm
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
 
@@ -35,7 +41,7 @@ def profile_view(request, *args, **kargs):
     info = BusinessInfo.objects.filter(user_id=id)
     details = BusinessDetails.objects.filter(user_id=id)
     photos = Gallery.objects.filter(user_id=id).all()
-    products = Products.objects.filter(user_id=id).all()
+    posts = Post.objects.filter(author_id=id).all()
     
     context={
         'covers':covers,
@@ -43,31 +49,9 @@ def profile_view(request, *args, **kargs):
         'info':info,
         'details':details,
         'photos':photos,
-        'products':products,
+        'posts':posts,
     }
     return render(request, 'profile.html', context)
-
-
-def products_all(request, *args, **kargs):
-    userid = kargs.get('user_id')   
-    products = Products.objects.filter(user_id=userid).all()
-    
-    
-    context= {
-        'products':products,
-    }
-    return render(request, 'products-all.html', context)
-
-
-def product_view(request, *args, **kargs):
-    id = kargs.get('id')
-    userid = kargs.get('user_id')    
-    products = Products.objects.filter(id=id, user_id=userid).all()    
-    
-    context= {
-        'products':products,
-    }
-    return render(request, 'product-view.html', context)
 
 
 def gallery(request, *args, **kargs):
@@ -93,14 +77,34 @@ def search_view(request, *args, **kargs):
     if request.method == 'POST':
         query = request.POST.get('query')
         query_set = Q(city__icontains=query)|Q(business_name__icontains=query)|Q(street__icontains=query)|Q(business_type__icontains=query)
-        infos = BusinessInfo.objects.filter(query_set)
+        infos_list = BusinessInfo.objects.filter(query_set)
         details = BusinessDetails.objects.all().annotate(distance=Distance('location', user_location)).order_by('distance')
         covers = CoverImg.objects.all()
+        
+        page = request.GET.get('page', 1)
+
+        paginator = Paginator(infos_list, 10)
+        try:
+            infos = paginator.page(page)
+        except PageNotAnInteger:
+            infos = paginator.page(1)
+        except EmptyPage:
+            infos = paginator.page(paginator.num_pages)
     
     else:
         details = BusinessDetails.objects.annotate(distance=Distance('location', user_location)).order_by('distance')
-        infos = BusinessInfo.objects.all()
+        infos_list = BusinessInfo.objects.all()
         covers = CoverImg.objects.all()
+        
+        page = request.GET.get('page', 1)
+
+        paginator = Paginator(infos_list, 10)
+        try:
+            infos = paginator.page(page)
+        except PageNotAnInteger:
+            infos = paginator.page(1)
+        except EmptyPage:
+            infos = paginator.page(paginator.num_pages)
     
     context = {
         'details':details,
@@ -137,9 +141,11 @@ def search_category(request, *args, **kargs):
     return render(request, 'search.html', context)
 
 def orders_view(request, *args, **kargs):
-
-	context = {}
-	return render(request, 'orders.html', context)
+        
+    user_list = User.objects.all()
+    paginator = Paginator(user_list, 10)
+    context = {}
+    return render(request, 'orders.html', context)
 
 def about_view(request, *args, **kargs):
     
@@ -148,5 +154,24 @@ def about_view(request, *args, **kargs):
 
 def contact_view(request, *args, **kargs):
     
-	context = {}
-	return render(request, 'contact.html', context)
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, from_email, ['aroundtz20@gmail.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect('pages:success')
+    context = {
+        'form':form
+    }
+    return render(request, 'contact.html', context)
+
+
+def successView(request):
+    return render(request, "success_email.html", {})

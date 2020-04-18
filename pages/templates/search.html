@@ -15,26 +15,30 @@
                 </div>
                 <div class="vertical-nav">
                     <div class="nav flex-column">
-                        
-                            <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold" href="{% url 'pages:search_cat' query='money agent'%}">
-                                <span class="navlinkclr">Money Agents</span>
-                            </a>
-                        
-                        
-                            <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold" href="{% url 'pages:search_cat' query='mobile & accessories'%}">
-                                <span class="navlinkclr">Mobile & Accessories</span>
-                            </a>
-                        
-                        
-                            <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold" href="{% url 'pages:search_cat' query='fashion' %}">
-                                <span class="navlinkclr">Fashion</span>
-                            </a>
-                        
-                        
-                            <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold" href="{% url 'pages:search_cat' query='restaurant'%}">
-                                <span class="navlinkclr">Restaurants</span>
-                            </a>
-                        
+
+                        <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold"
+                            href="{% url 'pages:search_cat' query='money agent'%}">
+                            <span class="navlinkclr">Money Agents</span>
+                        </a>
+
+
+                        <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold"
+                            href="{% url 'pages:search_cat' query='mobile & accessories'%}">
+                            <span class="navlinkclr">Mobile & Accessories</span>
+                        </a>
+
+
+                        <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold"
+                            href="{% url 'pages:search_cat' query='fashion' %}">
+                            <span class="navlinkclr">Fashion</span>
+                        </a>
+
+
+                        <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold"
+                            href="{% url 'pages:search_cat' query='restaurant'%}">
+                            <span class="navlinkclr">Restaurants</span>
+                        </a>
+
                         <!-- <li class="nav-item">
                             <a class="nav-link d-flex flex-row" href="#">
                                 <small>Tailor</small>
@@ -105,17 +109,33 @@
             </div>
             <div class="col mt-1">
                 <div class="row">
-                    <div class="col-12 rounded-lg mt-2">
-                        <form action="{% url 'pages:search' %}" method="POST">
+                    <div class=" col-12">
+                        <h4 class=" ml-3">Search for available sevices.</h4>
+                    </div>
+                    <div class="col-12 mt-2">
+                        <form action="{% url 'pages:search' %}" method="POST" class="">
                             {% csrf_token %}
-                            <div class="col-12">
-                                <div class="input-group mb-2">
-                                    <input type="text" class="form-control rounded-pill" placeholder="Search by location, category, name etc" name="query">
-                                    <button type="submit"
-                                        class="btn text-secondary rounded-pill ml-2"><i
-                                            class="fas fa-search fa-lg navlinkclr"></i></button>
-                                </div>
-                            </div>
+                                <div class=" row w-100 px-2 m-0">
+                                    <!-- <div class="col-2 p-0">
+                                        <select class="form-control w-100" name="cat">
+                                            <option value="all">All</option>
+                                            <option value="money agent">Money Agents</option>
+                                            <option value="mobile & accessories">Mobile & Accessories</option>
+                                            <option value="fashion">Fashion</option>
+                                            <option value="restaurants">Restaurants</option>
+                                          </select>                                    
+                                    </div> -->
+                                    <div class="col-11 p-0">
+                                        <input type="text" class="form-control w-100"
+                                        placeholder="Search by category, area, name, streets" name="query">
+                                    </div>
+                                    <div class="col-1 p-0">
+                                        <button type="submit" class="btn text-secondary font-weight-bold wi">
+                                            <i class="fas fa-search fa-lg navlinkclr"></i>
+                                        </button>
+                                    </div>
+                                </div>                             
+                        
                         </form>
                     </div>
                 </div>
@@ -141,7 +161,7 @@
                 </div> -->
                 <!-- ********************* cards ****************** -->
                 <hr class="m-2">
-                <div class="row">
+                <div class="row mb-5">
 
                     {% for detail in details %}
                     {% for info in infos %}
@@ -152,17 +172,27 @@
                     <div class="col mb-3">
                         <div class="d-flex justify-content-center">
                             <div class="card" style="width: 18rem; height:22rem;">
-                                <a href="{% url 'pages:profile' info.user_id %}"><img src="{{ cover.image.url }}" class="card-img-top img-thumbnail border-0" alt="..."
-                                    width="100%" height="auto" style="object-fit: contain;"></a>
-                                
+                                <a href="{% url 'pages:profile' info.user_id %}">
+                                    {% if not cover.image.url %}
+                                    <img src="{% static 'img/no-image.png' %}" class="card-img-top border-0"
+                                        height="200" width="100%" alt="..." style="object-fit: cover;">
+                                    {% else %}
+                                    <img src="{{ cover.image.url }}" class="card-img-top border-0" alt="..."
+                                        width="100%" height="auto" style="object-fit: cover;">
+                                    {% endif %}
+                                </a>
+                                <span class="border-bottom"></span>
                                 <div class="card-body">
-                                    <a href="{% url 'pages:profile' info.user_id %}" class="text-decoration-none text-dark"><h5 class="card-title font-weight-bold">{{ info.business_name}}</h5></a>
-                                    
+                                    <a href="{% url 'pages:profile' info.user_id %}"
+                                        class="text-decoration-none text-dark">
+                                        <h5 class="card-title font-weight-bold">{{ info.business_name}}</h5>
+                                    </a>
+
                                     <pre class="text-secondary text-wrap"
                                         style="font-family:Arial, Helvetica, sans-serif; overflow:hidden; height:5rem;">
                                     {{ detail.description|linebreaks }}
                                 </pre>
-                                    
+
                                 </div>
                                 <div class="card-footer border-0">
                                     <p class="card-text text-muted text-center" style="font-size:small">It's
@@ -179,14 +209,68 @@
                     {% endfor %}
 
                 </div>
+                <div class="row">
+            
+                    <div class="col-12">
+        
+                        <nav aria-label="Page navigation">
+                            {% if infos.has_other_pages %}
+                        <ul class="pagination mx-auto d-flex justify-content-center" style="background: #ff990;">
+                            {% if infos.has_previous %}
+                            <li class="page-item">
+                                <a href="?page={{ infos.previous_page_number }}" class="page-link text-dark" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item rounded-left" style="background-color: #ff9900;">
+                                <a href="" class="nav-link disabled font-weight-bold" tabindex="-1" aria-disabled="true" aria-label="Previous">
+                                    <span varia-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                            {% for i in infos.paginator.page_range %}
+                            {% if infos.number == i %}
+                            <li class="active page-item" style="background-color: #ff9900;">
+                                <a href="" class="nav-link disabled font-weight-bold" tabindex="-1" aria-disabled="true">
+                                    <span>{{ i }} <span class="sr-only">(current)</span></span>
+                                </a>
+                               
+                            </li>
+                            {% else %}
+                            <li class="page-item"><a href="?page={{ i }}" class="page-link text-dark">{{ i }}</a></li>
+                            {% endif %}
+                            {% endfor %}
+                            {% if infos.has_next %}
+                            <li class="page-item">
+                                <a href="?page={{ infos.next_page_number }}" class="page-link text-dark" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item rounded-right" style="background-color: #ff9900;">
+                                <a href="" class="nav-link disabled font-weight-bold" tabindex="-1" aria-disabled="true" aria-label="Next">
+                                    <span varia-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        {% endif %}
+                        </nav>
+        
+                    </div>
+        
+                </div>
+                
                 <div>
                 </div>
             </div>
             <div class="col-lg-2 col-md-12 col-sm-12 m-1">
+                
             </div>
         </div>
     </div>
-
+    
     {% include 'footer.html' %}
 </body>
 {% endblock %}

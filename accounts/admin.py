@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, BusinessInfo, BusinessDetails, CoverImg, ProfileImg, Products, Gallery
+from .models import User, BusinessInfo, BusinessDetails, CoverImg, ProfileImg, Gallery
 
 # Register your models here.
 class UserAdmin(admin.ModelAdmin):
@@ -12,5 +12,4 @@ admin.site.register(BusinessInfo)
 admin.site.register(BusinessDetails)
 admin.site.register(CoverImg)
 admin.site.register(ProfileImg)
-admin.site.register(Products)
 admin.site.register(Gallery)

@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<body id="svgbg">
+    {% include 'profile_header.html' %}
+    <style>
+        #svgbg {
+            background-image: url("{% static 'img/bgiconpatterns.png' %}");
+            /*background-repeat: no-repeat;
+            background-size: cover;
+            background-size: 100%;
+            height: 100vh;*/
+
+        }
+    </style>
+    <div class="container-fluid px-lg-5 mt-3" >
+
+        <!-- Large modal -->
+        <!-- <div class="modal fade bd-example-modal-lg mt-5" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <button type="button" class="close ml-auto p-3" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-lg" placeholder="Search">
+                            </div>
+
+                            <div class=" d-flex justify-content-center">
+                                <button type="button" class="btn btn-lg text-light"
+                                    style="background-color:#ff9900">Search</button>
+                            </div>
+
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row px-2 mx-2 bg-light rounded-lg border">
+            <div class="col-10 mt-2">
+                <div class="mb-2">
+                    <a href="{% url 'post:add_post' %}" class=" text-decoration-none">
+                        <h5 class=" text-muted mb-1">What are you selling?</h5>
+                        <hr class="mt-2" style="background-color: #ff9900;">
+                    </a>
+
+                </div>
+            </div>
+            <div class="col-2 my-2 d-flex justify-content-center">
+                <button type="button" class="btn btn-sm btn-light" data-toggle="modal"
+                    data-target=".bd-example-modal-lg"><i
+                        class="fas fa-search fa-lg navlinkclr m-1 text-secondary"></i></button>
+
+            </div>
+            
+        </div> -->
+        <h4 class="ml-2"><span class="">{{posts.count}}</span> Results </h4>
+        <hr style="background-color: #ff9900;">
+        <div class="row mb-5 pb-5" style="margin-top: 20px">
+            {% for post in posts %}
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <div class="d-flex justify-content-center">
+
+                    <div class="card m-2 border-0" style="max-width: 540px; height:25rem;">
+                        <a href="{% url 'post:post_view' post.id %}">
+                            <img src="{{ post.image.url }}" class="card-img-top border-0" height="200" width="100%"
+                                alt="..." style="object-fit:cover;">
+                        </a>
+                        <span class="border-bottom"></span>
+
+                        <div class="card-body">
+                            <a href="{% url 'post:post_view' post.id %}"
+                                class=" text-decoration-none text-dark">
+                                <h4 class="card-title font-weight-bold mb-1">{{post.title}}</h4>
+                            </a>
+
+                            <h5 class="card-title font-weight-bold mb-1" style="color: #ff9900;">TSh {{ post.price }}/=</h5>
+                            <div style="text-overflow:ellipsis; overflow:hidden; height:5rem;">
+                                <p class="card-text text-muted" style="line-height: 1; "><small>{{post.content}}</small>
+                                </p>
+                            </div>
+
+                            <p class="card-text text-muted"> <small>{{post.whenpublished}}</small></p>
+                        </div>
+                        <div class="d-flex flex-row justify-content-end p-2">
+                            <div class="mr-2">
+                                <a href="sms:{{post.phone}}" style="color: #ff9900;">
+                                    <i class="fas fa-sms fa-2x"></i>
+                                </a>
+                            </div>
+                            <div class="mr-1">
+                                <a href="tel:{{post.phone}}" style="color: #ff9900;">
+                                    <i class="fas fa-phone-square-alt fa-2x"></i>
+                                </a>
+                            </div>
+                            <a href="tel:{{post.phone}}" class="p-1 text-decoration-none" style="color: #ff9900;">
+                                <span class="">{{post.phone}}</span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="alert alert-secondary w-100 mx-4" role="alert">
+                No post found!
+              </div>
+           
+            {% endfor %}
+        </div>
+
+
+        <div class="row pb-5 mb-5">
+            
+            <div class="col-12">
+
+                <nav aria-label="Page navigation">
+                    {% if posts.has_other_pages %}
+                <ul class="pagination mx-auto d-flex justify-content-center" style="background: #ff990;">
+                    {% if posts.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ posts.previous_page_number }}" class="page-link text-dark" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item rounded-left" style="background-color: #ff9900;">
+                        <a href="" class="nav-link disabled font-weight-bold" tabindex="-1" aria-disabled="true" aria-label="Previous">
+                            <span varia-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% for i in posts.paginator.page_range %}
+                    {% if posts.number == i %}
+                    <li class="active page-item" style="background-color: #ff9900;">
+                        <a href="" class="nav-link disabled font-weight-bold" tabindex="-1" aria-disabled="true">
+                            <span>{{ i }} <span class="sr-only">(current)</span></span>
+                        </a>
+                       
+                    </li>
+                    {% else %}
+                    <li class="page-item"><a href="?page={{ i }}" class="page-link text-dark">{{ i }}</a></li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if posts.has_next %}
+                    <li class="page-item">
+                        <a href="?page={{ posts.next_page_number }}" class="page-link text-dark" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item rounded-right" style="background-color: #ff9900;">
+                        <a href="" class="nav-link disabled font-weight-bold" tabindex="-1" aria-disabled="true" aria-label="Next">
+                            <span varia-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+                </nav>
+
+            </div>
+
+        </div>
+
+    </div>
+    {% include 'footer.html' %}
+</body>
+{% endblock %}

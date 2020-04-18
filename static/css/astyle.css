@@ -159,13 +159,16 @@ li a:hover {
     position: absolute;
     top: 62%;
     width: auto;
-    padding: 16px;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     color: rgb(255, 166, 0) !important;
     background-color: #ffffff80;
     font-weight: bold;
     font-size: 30px;
     transition: 0.5s ease;
-    border-radius: 0 3px 3px 0;
+    /* border-radius: 50%; */
     user-select: none;
     -webkit-user-select: none;
     margin: 0;
@@ -173,20 +176,28 @@ li a:hover {
     transform: translateY(-50%);
 }
 
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+    cursor: pointer;
+}
+
 .next {
     right: 0;
-    border-radius: 3px 0 0 3px;
+    border-radius: 5px 0 0 5px;
+    /* border-radius: 50%; */
+
 }
 
 .prev {
     left: 0;
-    border-radius: 3px 0 0 3px;
+    border-radius: 0 5px 5px 0;
+    /* border-radius: 50%; */
 }
 
-/*.prev:hover,
+.prev:hover,
 .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}*/
+    background-color: rgba(173, 173, 173, 0.8);
+}
 
 
 /* $$$$$$$$$$$ Cards $$$$$$$$*/

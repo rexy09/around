@@ -11,8 +11,9 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.contrib import messages
 # Forms
-from .models import BusinessInfo, BusinessDetails, CoverImg, ProfileImg, Products, Gallery
-from .forms import SignUpForm, LoginForm, BusinessInfoForm, BusinessDetailsForm, CoverImgForm, ProfileImgForm, ProductsForm, GalleryImgForm, ProductsFormUpdate
+from .models import BusinessInfo, BusinessDetails, CoverImg, ProfileImg, Gallery
+from post.models import *
+from .forms import SignUpForm, LoginForm, BusinessInfoForm, BusinessDetailsForm, CoverImgForm, ProfileImgForm, GalleryImgForm
 from .tokens import account_activation_token
 # location point
 from django.contrib.gis.geos import Point
@@ -20,13 +21,13 @@ from django.core.files import File
 from PIL import Image
 from io import BytesIO
 import os
-
+from django.db.models import Q
 User = get_user_model()
 
 
 # Create your views here.
 
-# User registration and login view
+# User login view
 def login_view(request, *args, **kargs):    
     if request.method == 'POST':
             l_form = LoginForm(request.POST or None)
@@ -34,20 +35,20 @@ def login_view(request, *args, **kargs):
                  # Login Form
                 username = l_form.cleaned_data.get('username')
                 password = l_form.cleaned_data.get('password')
-                user = User.objects.filter(username=username).first()
+                user = User.objects.filter(Q(username=username)|Q(email=username)).first()
                 # authentication
                 if user == None:
                     messages.error(request, "Invalid username or password.")
                 else:
                     if user.is_active == True:                        
-                        user_auth = authenticate(request, username=username, password=password, is_active=True)
+                        user_auth = authenticate(request, username=user.username, password=password, is_active=True)
                         if user_auth is not None:
                             login(request, user_auth)
                             return redirect('/')
                         else:
                             messages.error(request, "Invalid username or password.")
                     else:
-                        messages.error(request, "User Account is not activated.")
+                        messages.error(request, "Account is not activated!, please check your email.")
             
     else:
         l_form = LoginForm()
@@ -59,6 +60,7 @@ def login_view(request, *args, **kargs):
     
     return render(request, 'login.html', context)
 
+# Signup view
 def signup_view(request):
     if request.method == 'POST':
             s_form = SignUpForm(request.POST or None)
@@ -107,7 +109,7 @@ def confirmation_email(request, *args, **kwargs):
 # logout view
 def logout_view(request, *args, **kwargs):
     logout(request)
-    messages.info(request, "Logged out successfully!")
+    # messages.info(request, "Logged out successfully!")
     return redirect('index')
     context = {
 
@@ -145,7 +147,7 @@ def myprofile_view(request, *args, **kwargs):
     info = BusinessInfo.objects.filter(user_id=user.id)
     details = BusinessDetails.objects.filter(user_id=user.id)
     photos = Gallery.objects.filter(user_id=user.id).all()
-    products = Products.objects.filter(user_id=user.id).all()
+    posts = Post.objects.filter(author_id=user.id).all()
     
     context={
         'covers':covers,
@@ -153,7 +155,7 @@ def myprofile_view(request, *args, **kwargs):
         'info':info,
         'details':details,
         'photos':photos,
-        'products':products,
+        'posts':posts,
     }
     
     return render(request, 'myprofile.html', context)
@@ -358,135 +360,25 @@ def profile_img_delete(request, *args, **kwargs):
     }
     return render(request, 'profile_img_delete.html', context)
 
-@login_required
-def products(request, *args, **kargs):
-    products = Products.objects.filter(user_id=request.user.id).all()
-    if request.method == 'POST':
-        form = ProductsForm(request.POST, request.FILES)
-        if form.is_valid():
-            product = form.save(commit=False)
-            product.user = request.user
-            image = form.cleaned_data.get('image')
-            
-            img = Image.open(image)
-            rgb_im = img.convert('RGB')
-            im_io = BytesIO() 
-            rgb_im.save(im_io, 'JPEG', quality=85,)
-            newimage = File(im_io, name=image.name)
-            product.image = newimage
-            product.save()
-            return redirect('accounts:myprofile')
-    else:
-        form = ProductsForm()
-    
-    context= {
-        'form':form,
-        'products':products,
-    }
-    return render(request, 'products.html', context)
-
-
-@login_required
-def products_edit(request, *args, **kargs):
-    id = kargs.get('id')
-    user = request.user
-    products = Products.objects.filter(id=id, user_id=user.id).first()
-    # getting image name
-    img_url = False
-    img_url = products.image
-    
-    if request.method == 'POST':
-        form = ProductsFormUpdate(request.POST, request.FILES, instance=products)
-        if form.is_valid():
-            product = form.save(commit=False)
-            image = form.cleaned_data.get('image')
-            # Compare existingi image
-            if img_url == image:
-                product.save()
-                return redirect('accounts:myprofile')
-            else:
-            # uploadingu new image
-                os.remove(img_url.path)
-                img = Image.open(image)
-                rgb_im = img.convert('RGB')
-                im_io = BytesIO() 
-                rgb_im.save(im_io, 'JPEG', quality=85,)
-                newimage = File(im_io, name=image.name)
-                product.image = newimage
-                product.save()
-                return redirect('accounts:myprofile')
-            
-    else:
-        form = ProductsFormUpdate(instance=products)
-    
-    context= {
-        'form':form,
-    }
-    return render(request, 'product_edit.html', context)
-
-
-@login_required
-def products_delete(request, *args, **kargs):
-    id = kargs.get('id')
-    user = request.user
-    products = Products.objects.filter(id=id, user_id = user.id)
-    img_path = False
-    for p in products:
-        img_path = p.image.path
-        
-    if request.method == 'POST':
-        os.remove(img_path)
-        products.delete()
-        
-        return redirect('accounts:myprofile')           
-            
-    
-    context= {
-        'products':products,
-    }
-    return render(request, 'product_delete.html', context)
-
-
-@login_required
-def products_all(request, *args, **kargs):
-    products = Products.objects.filter(user_id=request.user.id).all()
-    
-    
-    context= {
-        'products':products,
-    }
-    return render(request, 'products_all.html', context)
-
-
-@login_required
-def product_view(request, *args, **kargs):
-    id = kargs.get('id')
-    user = request.user    
-    products = Products.objects.filter(id=id, user_id=user.id).all()    
-    
-    context= {
-        'products':products,
-    }
-    return render(request, 'product_view.html', context)
 
 
 @login_required
 def gallery(request, *args, **kargs):
-    photos = Gallery.objects.filter(user_id=request.user.id)
+    user = request.user
+    photos = Gallery.objects.filter(user_id=request.user.id).order_by('-date_updated')
     if request.method == 'POST':
         form = GalleryImgForm(request.POST, request.FILES)
+        files = request.FILES.getlist('image')
         if form.is_valid():
-            gallery = form.save(commit=False)
-            gallery.user = request.user
-            image = form.cleaned_data.get('image')
-            
-            img = Image.open(image)
-            rgb_im = img.convert('RGB')
-            im_io = BytesIO() 
-            rgb_im.save(im_io, 'JPEG', quality=85,)
-            newimage = File(im_io, name=image.name)
-            gallery.image = newimage
-            gallery.save()
+                        
+            for file in files:            
+                img = Image.open(file)
+                rgb_im = img.convert('RGB')
+                im_io = BytesIO() 
+                rgb_im.save(im_io, 'JPEG', quality=85,)
+                newimage = File(im_io, name=file.name)
+                gallery = Gallery(user=user, image=newimage)
+                gallery.save()
             return redirect('accounts:myprofile')
     else:
         form = GalleryImgForm()

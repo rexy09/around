@@ -4,68 +4,168 @@
 {% block content %}
 
 <body>
+
     {% include 'header.html' %}
 
-    <div style="background-color: #ff9900;" class="p-0 m-0">
-        <div class="row w-100 m-0">
-            <div class="col-12 w-100 p-0">
+    <div class=" container-fluid">
+        <div style="" class="p-0 m-0">
+            <div class="row w-100 m-0">
+                <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12 col-xs-12 w-100 p-0">
+                    <div class=" d-flex flex-column justify-content-start mt-lg-5 pt-lg-5">
+                        <h1 class=" font-weight-bold mt-5 display-1 px-2" style="color: #ff9900;">About Us</h1>
+                        <div style="height: 5px; background-color:#ff9900; width:200px;"
+                            class=" mr-auto mt-2 mb-3 ml-2"></div>
+                        <p class="lead text-muted px-2">
+                            AroundTz a free platform in which we easily bring your business to the face of customers by
+                            making free
+                            advertisements and connecting you to make a direct chatting with your clients around
+                            Tanzania.
+                        </p>
+                       
+                       
+                    </div>
+
+                </div>
+                <div class="col-xl-7 col-lg-7 col-md-6 col-sm-12 col-xs-12">
+                    <div class=" d-flex justify-content-center">
+                        <img src="{% static 'img/undraw_team_spirit.svg' %}" alt="" width="100%" height="auto"
+                            class=" pt-5">
+                    </div>
+
+                </div>
+            </div>
+
+         
+        </div>
+        <div class="row w-100 my-5">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 p-0">
                 <div class=" d-flex justify-content-center">
-                    <h1 class=" font-weight-bold my-5 text-center display-3 text-light px-1">About Us</h1>
+                    <img src="{% static 'img/undraw_team_goals.svg' %}" alt="" width="100%" height="auto"
+                        class=" pt-5">
                 </div>
 
             </div>
-
-        </div>
-
-        <div class="row w-100 m-0">
-            <div class="col">
-
-            </div>
-
-            <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12 w-100 p-0">
-                <div class=" d-flex justify-content-around">
-
-                    <p class=" text-center text-light lead w-100 text-wrap pb-5 px-2">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class=" mt-5">
+                    <h1 class=" font-weight-bold display-3">Our Mission</h1>
+                    <div style="height: 5px; background-color:#ff9900; width:200px;"
+                            class=" mr-auto mt-2 mb-3 ml-1"></div>
+                    <p class=" text-muted lead text-wrap ml-1">
                         We aim to make your business known countrywide and easily get accessed by people around your
                         area to add your daily sales.
-
+    
                     </p>
+                </div>
+                
+
+               
+            </div>
+           
+
+        </div>
+    </div>
+
+
+    <div class="container mb-5">
+        <h1 class=" font-weight-bold text-center display-3">The Team</h1>
+        <div style="height: 5px; background-color:#ff9900; width:150px;"
+        class=" mx-auto mt-2 mb-3 ml-1"></div>
+
+        <div class=" row mt-5">
+            <div class="col">
+                <div class=" d-flex justify-content-center mb-5">
+
+                    <div class=" d-flex flex-column">
+
+                        <div class=" mb-3">
+                            <img src="{% static 'img/fredmuju.png' %}" alt="" width="200" height="auto" class=" rounded-circle">
+                        </div>
+                        <div>
+                            <h4 class=" text-center font-weight-bold">Fredrick Mujumba</h4>
+                            <p class=" text-muted text-center">Founder/Developer/CEO</p>
+                        </div>                        
+                        <div class=" d-flex flex-row justify-content-center mt-2">
+                            <div class=" mx-2">
+                                <a href="https://www.instagram.com/rexy.09/">
+                                    <i class="fab fa-instagram fa-2x m" style="color: #ff9900;"></i>
+                                </a>
+                            </div>
+                            <div class=" mx-2">
+                                <a href="https://twitter.com/fredmuju/">
+                                    <i class="fab fa-twitter fa-2x" style="color: #ff9900;"></i>
+                                </a>
+                            </div>
+                            <div class=" mx-2">
+                                <a href="http://linkedin.com/in/fred-muju-52518a164">
+                                    <i class="fab fa-linkedin-in fa-2x" style="color: #ff9900;"></i>
+                                </a>
+                            </div>
+                            <div class=" mx-2">
+                                <a href="https://www.facebook.com/fredrick.mujumba">
+                                    <i class="fab fa-facebook fa-2x" style="color: #ff9900;"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
 
                 </div>
 
             </div>
 
             <div class="col">
+                <div class=" d-flex justify-content-center mb-5">
+
+                    <div class=" d-flex flex-column">
+
+                        <div class=" mb-3">
+                            <img src="{% static 'img/reagan.png' %}" alt="" width="200" height="auto" class=" rounded-circle">
+                        </div>
+                        <div>
+                            <h4 class=" text-center font-weight-bold">Reggan Msuya</h4>
+                            <p class=" text-muted text-center">Managing Director</p>
+                        </div>                        
+                        <div class=" d-flex flex-row justify-content-center mt-2">
+                            <div class=" mx-2">
+                                <a href="https://instagram.com/suya_d21">
+                                    <i class="fab fa-instagram fa-2x m" style="color: #ff9900;"></i>
+                                </a>
+                            </div>
+                            <div class=" mx-2">
+                                <a href="">
+                                    <i class="fab fa-twitter fa-2x" style="color: #ff9900;"></i>
+                                </a>
+                            </div>
+                          
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
 
         </div>
+       
     </div>
 
-    <div class="cotainer">
-        <div class="row w-100 my-5">
-            <div class="col">
-
-            </div>
-            <div class="col-xl-10 col-lg-10 col-md-10 col-sm-12 col-xs-12 m-3">
-                <h1 class=" font-weight-bolder">Around Tz</h1>
-                <p class="lead text-muted">
-                    A free platform in which we easily bring your business to the face of customers by making free
-                    advertisements and connecting you to make a direct chatting with your clients around Tanzania.
-                </p>
-                <!-- <p>
-                    We aim to make your business known countrywide and easily get accessed by people around your area to add your daily sales.
-                </p> -->
-            </div>
-            <div class="col">
-
-            </div>
-
+    <div style="background-color: #ff9900;" class="m-0 w-100">
+        
+        <div class=" px-5 py-2">
+            <hr class=" bg-light m-0">
         </div>
-    </div>
+        
+        <div class=" d-flex justify-content-center">
+          
+            <p class=" text-dark font-weight-bold">  &copy; <span id="year"></span> AroundTz</p>
+        </div>
+        <script>
+            document.getElementById("year").innerHTML = new Date().getFullYear();
+        </script>
 
+    </div>
     
-    {% include 'nav_footer.html' %}
+    <!-- {% include 'nav_footer.html' %} -->
 
 
 </body>

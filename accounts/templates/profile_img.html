@@ -7,6 +7,7 @@
 
         /* SCRIPT TO OPEN THE MODAL WITH THE PREVIEW */
         $("#id_image").change(function () {
+            console.log('hello');
             if (this.files && this.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
@@ -25,8 +26,8 @@
             $image.cropper({
                 viewMode: 1,
                 aspectRatio: 1 / 1,
-                minCropBoxWidth: 200,
-                minCropBoxHeight: 200,
+                minCropBoxWidth: 150,
+                minCropBoxHeight: 150,
                 ready: function () {
                     $image.cropper("setCanvasData", canvasData);
                     $image.cropper("setCropBoxData", cropBoxData);
@@ -53,7 +54,7 @@
             // ...
         });
 
-      
+
         /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
         $(".js-crop-and-upload").click(function () {
             var cropData = $image.cropper("getData");
@@ -70,28 +71,29 @@
 
 {% block content %}
 
-{% include 'profile_header.html' %}
+<h4 class="page-header font-weight-bold pt-3">Profile Image Upload</h4>
+<hr style="background-color: #ff9900;">
+<!-- FORM TO UPLOAD THE IMAGES -->
+<form method="post" enctype="multipart/form-data" id="formUpload">
+    {% csrf_token %}
+    {{ form|crispy }}
+</form>
 
-<div class="container">
-    <h1 class="page-header">Profile Image</h1>
-    <!-- FORM TO UPLOAD THE IMAGES -->
-    <form method="post" enctype="multipart/form-data" id="formUpload">
-        {% csrf_token %}
-        {{ form|crispy }}
-    </form>
+<!-- CONTAINER TO DISPLAY THE CROPPED IMAGES -->
+<div class="row mb-5 pb-5 mt-2">
 
-    <!-- CONTAINER TO DISPLAY THE CROPPED IMAGES -->
-<div class="row mb-5" style="margin-top: 20px">
-    
     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
         {% for photo in photos %}
         <img src="{{ photo.image.url }}" class="" width="100%" height="auto">
-        <a href="{% url 'accounts:profile_img_delete' photo.user_id %}" class=" text-decoration-none text-danger p-2"><i class="far fa-trash-alt"></i></a>
+        <div class="mt-2">
+            <a href="{% url 'accounts:profile_img_delete' photo.user_id %}" class=" text-decoration-none text-danger p-1"><i
+                class="far fa-trash-alt"></i> Delete</a>
+        </div>
+       
         {% endfor %}
-        
+
     </div>
-    
-</div>
+
 </div>
 
 
@@ -100,7 +102,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Crop the Profile photo</h4>
+                <h4 class="modal-title font-weight-bold">Crop the Profile photo</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -118,7 +120,7 @@
                     </button>
                 </div>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-                <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
+                <button type="button" class="btn text-light js-crop-and-upload" style="background-color: #ff9900;">Crop and upload</button>
             </div>
         </div>
     </div>

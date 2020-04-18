@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_countries',
     # geodjango
     'django.contrib.gis',
+    'activity_log',
 ]
 
 # CRISPY_TEMPLATE_PACK = 'uni_form'
@@ -61,6 +62,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'activity_log.middleware.ActivityLogMiddleware',
 ]
 
 ROOT_URLCONF = 'around.urls'
@@ -90,7 +92,7 @@ WSGI_APPLICATION = 'around.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'aroundtz',
+        'NAME': 'around',
         'USER': 'postgres',
         'PASSWORD': 'rootadmin',
         'HOST': '127.0.0.1',
@@ -184,3 +186,45 @@ EMAIL_USE_TLS = True
 # EMAIL_TIMEOUT =
 # EMAIL_SSL_KEYFILE =
 # EMAIL_SSL_CERTFILE =
+
+
+# For writing log to another DB
+
+DATABASE_ROUTERS = ['activity_log.router.DatabaseAppsRouter']
+DATABASE_APPS_MAPPING = {'activity_log': 'logs'}
+
+# If you set up DATABASE_APPS_MAPPING, but don't set related value in
+# DATABASES, it will created automatically using "default" DB settings
+# as example.
+# DATABASES = {
+#     'logs': {
+#         ...
+#     },
+# }
+
+# Create DB automatically (for postgres, and may be mysql).
+# We create log database automatically using raw SQL in pre_migrate signal.
+# You must insure, that DB user has permissions for creation databases. 
+# Tested only for postgresql
+ACTIVITYLOG_AUTOCREATE_DB = True
+
+# App settings
+
+# Log anonymous actions?
+ACTIVITYLOG_ANONYMOUS = True
+
+# Update last activity datetime in user profile. Needs updates for user model.
+ACTIVITYLOG_LAST_ACTIVITY = True
+
+# Only this methods will be logged
+ACTIVITYLOG_METHODS = ('POST', 'GET')
+
+# List of response statuses, which logged. By default - all logged.
+# Don't use with ACTIVITYLOG_EXCLUDE_STATUSES
+ACTIVITYLOG_STATUSES = (200, )
+
+# List of response statuses, which ignores. Don't use with ACTIVITYLOG_STATUSES
+# ACTIVITYLOG_EXCLUDE_STATUSES = (302, )
+
+# URL substrings, which ignores
+ACTIVITYLOG_EXCLUDE_URLS = ('/admin/activity_log/activitylog', )

@@ -14,13 +14,15 @@ class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='author', on_delete=models.CASCADE,)
     title = models.CharField(max_length=100)
     content = models.TextField(blank=True, null=True)
+    phone = models.CharField(max_length=50, null=True, blank=True)
     price = models.FloatField(null=True, blank=True)
+    image = models.ImageField(upload_to='post/',null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add= True)
     date_updated = models.DateTimeField(auto_now= True)
     likes = models.IntegerField(default=0)
-    dislikes = models.IntegerField(default=0)
 
-
+    # def get_images(self):
+    #     return self.post_img_set.all()
 
     def __str__(self):
         return self.title
@@ -29,7 +31,7 @@ class Post(models.Model):
     def whenpublished(self):
         now = timezone.now()
         
-        diff= now - self.date_created
+        diff= now - self.date_updated
 
         if diff.days == 0 and diff.seconds >= 0 and diff.seconds < 60:
             seconds= diff.seconds
@@ -96,9 +98,8 @@ class Post(models.Model):
 # <h1>Published {{ postobj.whenpublished }}</h1>
 
 class PostImage(models.Model):
-    # post = models.ForeignKey(Post, related_name='post_img', on_delete=models.CASCADE)
-    file = models.ImageField(upload_to='post_img/')
-    # position = models.PositiveSmallIntegerField(default=0)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    file = models.ImageField(upload_to='post_img/',null=True, blank=True)
     date_updated= models.DateTimeField(auto_now= True)
 
 

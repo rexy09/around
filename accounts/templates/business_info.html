@@ -7,13 +7,14 @@
 <body>
     {% include 'profile_header.html' %}
     <!-- CONTAINER -->
-    <div class="container mb-5">
+    <div class="container">
 
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div>
                     <form method="POST">{% csrf_token %}
-                        <h3 class="font-weight-bold">Owner info</h3>
+                        <h4 class="font-weight-bold">Personal information</h4>
+                        <hr style="background-color: #ff9900;">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 {{form.first_name|as_crispy_field}}
@@ -39,7 +40,8 @@
                                 </div>
                             </div>
                         </div>
-                        <h3 class="font-weight-bold">Business info</h3>
+                        <h4 class="font-weight-bold">Business information</h4>
+                        <hr style="background-color: #ff9900;">
                         <div class="form-row">
                             <div class="form-group col">
                                 {{form.business_name|as_crispy_field}}
@@ -65,16 +67,28 @@
 
                             {{form.street|as_crispy_field}}
                         </div>
-                        <button type="submit" class="btn btn-primary mb-5">Submit</button>
+                        <button type="submit" class="btn mb-5 w-100 text-light"  style="background-color:#ff9900">Submit</button>
                     </form>
                 </div>
             </div>
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <img src="img/shardayyy-photography-fJzmPe-a0eU-unsplash.jpg" alt="" width="100%" height="100%">
+                <img src="{% static 'img/undraw_personal_information.svg' %}" alt="" width="100%" height="100%" class=" pb-5">
             </div>
         </div>
 
     </div>
+    <div style="background-color: #ff9900;" class="m-0 w-100">
+        <div class=" px-5 py-2">
+            <hr class=" bg-light m-0">
+        </div>
+        
+        <div class=" d-flex justify-content-center">
+            <p class=" text-dark font-weight-bold">© 2020 AroundTz</p>
+        </div>
+
+    </div>
+    
+    {% include 'footer.html' %}
 </body>
 
 {% endblock %}

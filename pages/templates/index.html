@@ -17,16 +17,31 @@
     {% include 'header.html'%}
     <!--********** Contents ************-->
       <div style="background-color: #ff9900;" class="m-0 w-100">
-          <div class="w-50">
+          <div class=" row w-100">
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                
             <h1 class=" text-light m-0 font-weight-bold pl-5 pt-5 display-3 d-none d-lg-block d-xl-block">Free Business Promotion</h1>
             <h1 class=" text-light m-0 font-weight-bold pl-5 pt-5 display-3 d-none d-md-block d-lg-none">Free Business Promotion</h1>
             <h1 class=" text-light m-0 font-weight-bold pl-4 pt-4 display-4 d-block d-sm-block d-md-none">Free Business Promotion</h1>
+
+            <div class="">
+                <p class=" text-light m-0 pl-5 pt-2 lead d-none d-lg-block d-xl-block">And easy search for nearby Services.</p>
+                <p class=" text-light m-0 pl-5 pt-2 lead d-none d-none d-md-block d-lg-none">And easy search for nearby Services.</p>
+                <p class=" text-light m-0 pl-4 pt-2 lead d-none d-block d-sm-block d-md-none">And easy search for nearby Services.</p>
+              </div>
+    
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class=" d-flex justify-content-center">
+                    <img src="{% static 'img/undraw_business_shop.svg' %}" alt="" width="350" height="auto" class="d-none d-lg-block d-xl-block mt-5">
+                </div>
+                
+            </div>
+
           </div>
 
-          <div class="w-75">
-            <p class=" text-light m-0 pl-5 pt-2 lead">And easy search for nearby Services.</p>
-          </div>
-
+          
           <div class="d-flex justify-content-center mt-5 pb-2">
               <a href="{% url 'accounts:signup' %}" class="btn btn-light font-weight-bold btn-lg" style="color: #ff9900;">Get Started Now</a>
 
@@ -230,20 +245,112 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <h1 class=" font-weight-bold mt-5">Features</h1>
+        <div style="height: 5px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3">
         </div>
+        <div class="row mt-5">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <img src="{% static 'img/map-colour-thumbnail.png' %}" alt="" width="100%" height="auto">
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class=" mt-5 pt-md-5">
+                    <h1 class=" font-weight-bold">Easy Search for nearby services.</h1>
+                    <div style="height: 5px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3"></div>
+                    <p class=" lead text-muted mt-3">Search for nearby services around you such as Mobile Money Agents (wakala), Fashion shops, Restaurants and Mobile and Accessories shops.</p>
+                    <a href="{% url 'pages:search' %}" class="btn btn-outline-light text-light font-weight-bold btn-lg" style="background-color: #ff9900;">Search Now</a>
+                </div>                
+               
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="mt-5 pt-md-5">
+
+                    <h1 class=" font-weight-bold">Free Business Advertisement.</h1>
+                    <div style="height: 5px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3"></div>
+                    <p class=" lead text-muted mt-3">Advertise your business here to increase your sales and customers by posts.</p>        
+                    <a href="{% url 'accounts:signup' %}" class="btn btn-outline-light text-light font-weight-bold btn-lg" style="background-color: #ff9900;">Get Started Now</a> 
+
+                </div>
+                  
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <img src="{% static 'img/thumbnail.png' %}" alt="" width="100%" height="auto">
+               
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <img src="{% static 'img/phone-conversation-colour.jpg' %}" alt="" width="100%" height="auto">
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class=" mt-5 pt-md-5">
+                    <h1 class=" font-weight-bold">Call and Chat with Seller.</h1>
+                    <div style="height: 5px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3"></div>
+                    <p class=" lead text-muted mt-3">Easy way to start your conversation with a seller throungh call and sms for more details.</p>
+                    <a href="{% url 'post:posts' %}" class="btn btn-outline-light text-light font-weight-bold btn-lg" style="background-color: #ff9900;">Start Now</a>
+                </div>
+                
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class=" mt-5 pt-md-5">
+                    <h1 class=" font-weight-bold">Shop Safe</h1>
+                    <div style="height: 5px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3"></div>
+                    <p class=" lead text-muted mt-3">Protect yourself from COVID-19 shop safe and avoid unnecessary movement by using Around Tz.</p>        
+                    <a href="{% url 'pages:search' %}" class="btn btn-outline-light text-light font-weight-bold btn-lg" style="background-color: #ff9900;">Shop Now</a>    
+                </div>
+                
+            </div>
+    
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <img src="{% static 'img/mask-man.png' %}" alt="" width="100%" height="auto">
+               
+            </div>
+        </div>
+        <!-- <div class="row mt-5">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class=" mt-5 ">
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?list=PLib_gt6tTOx6TWUgq2akCMfW79QelPRK-" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                
+            </div>
+    
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h4 class=" mt-md-5 font-weight-bold">AroundTz Youtube Tutorials</h4>
+                <div style="height: 5px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3"></div>
+                <p class=" lead text-muted mt-3">These tutorials playlist will help you understand the Web App features and how they work.</p> 
+               
+            </div>
+        </div> -->
     </div>
 
-    <div class="">
-        <svg xmlns="#" viewBox="0 0 1440 320">
-            <path fill="#ff9900" fill-opacity="1" d="M0,32L80,69.3C160,107,320,181,480,181.3C640,181,800,107,960,90.7C1120,75,1280,117,1360,138.7L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
-          </svg>
+   
+
+    
+    <div style="background-color: #ff9900;" class="m-0 w-100">
+        
+        <div class=" px-5 py-2">
+            <hr class=" bg-light m-0">
+        </div>
+        
+        <div class=" d-flex justify-content-center">
+          
+            <p class=" text-dark font-weight-bold">  &copy; <span id="year"></span> AroundTz</p>
+        </div>
+        <script>
+            document.getElementById("year").innerHTML = new Date().getFullYear();
+        </script>
 
     </div>
-    <div style="background-color: #ff9900; height:75px" class="m-0 w-100">
-
-    </div>
-
+    
     {% include 'footer.html' %}
 </body>
 {% endblock %}

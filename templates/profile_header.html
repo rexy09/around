@@ -1,5 +1,5 @@
 {% load static %}
-<nav class="navbar navbar-expand-lg navbar-light border-0 py-0">
+<nav class="navbar navbar-expand-lg navbar-light border-0 py-0 bg-light">
     <a class="navbar-brand text-secondary " href="{% url 'index' %}">
         <div class="d-flex flex-row">
             <img src="{% static 'icon/around me.png' %}" width="auto" height="40" class="d-inline-block align-top"
@@ -37,9 +37,17 @@
             <i class="fas fa-envelope fa-lg navlinkclr"></i>
         </a> -->
         {% if request.user.is_authenticated %}
-        <a href="{% url 'accounts:myprofile' %}" class="text-decoration-none text-secondary font-weight-bold"
+        <a href="{% url 'accounts:myprofile' %}" class="text-decoration-none text-secondary font-weight-bold m-2"
             style="color:#ff9900">
-            <i class="fas fa-user fa-lg navlinkclr text-muted"></i>  <span class="navlinkclr">{{request.user.username}}</span>
+            {% if not user.profileimg.image.url %}
+            <img src="{{ user.profileimg.image.url }}" alt="" srcset="" width="30" height="30"
+                class="border rounded-circle mr-2 border-muted">
+            <i class="fas fa-user fa-lg navlinkclr"></i>
+            <span class="navlinkclr">{{user.username}}</span>
+            {% else %}
+            <img src="{{ user.profileimg.image.url }}" alt="" srcset="" width="30" height="30"
+                class="border rounded-circle mr-2 border-muted"><span class="navlinkclr">{{user.username}}</span>
+            {% endif %}
         </a>
         {% else %}
         <a class="text-decoration-none text-secondary m-2" href="{% url 'accounts:myprofile' %}">
@@ -68,15 +76,21 @@
     {% if request.user.is_authenticated %}
     <a href="{% url 'accounts:myprofile' %}" class="text-decoration-none text-light font-weight-bold"
         style="color:#ff9900">
-        <i class="fas fa-user fa-1x navlinkclr text-secondary"></i> <span
-            class="navlinkclr">{{request.user.username}}</span>
+        {% if not user.profileimg.image.url %}
+        <i class="fas fa-user fa-lg navlinkclr"></i>
+        <span class="navlinkclr">{{user.username}}</span>
+        {% else %}
+        <img src="{{ user.profileimg.image.url }}" alt="" srcset="" width="30" height="30"
+            class="border rounded-circle mr-2 border-muted"><span class="navlinkclr">{{user.username}}</span>
+        {% endif %}
     </a>
     {% endif %}
     <div class="d-flex flex-column overflow-auto mb-5 ml-4">
         <div class="vertical-nav">
-            <h5 class="px-2 pt-3 pb-1 font-weight-bold text-secondary">Settings</h5>
+            
             <ul class="nav flex-column  mb-1 ml-3">
-                <h6 class=" font-weight-bold text-secondary">Edit Profile</h6>
+                <!-- <h6 class=" font-weight-bold text-secondary">Edit Profile</h6> -->
+                <h5 class="px-2 pt-3 pb-1 font-weight-bold text-light">Edit Profile</h5>
                 <div class="mr-5">
                     <hr class="m-0 bg-secondary">
                 </div>
@@ -101,8 +115,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex flex-row side" href="{% url 'accounts:product' %}">
-                        <small>Products</small>
+                    <a class="nav-link d-flex flex-row side" href="{% url 'post:add_post' %}">
+                        <small>Post</small>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -113,7 +127,7 @@
 
             </ul>
             <ul class="nav flex-column mb-2 ml-3">
-                <h6 class=" font-weight-bold text-secondary">Account Settings</h6>
+                <h6 class=" font-weight-bold ml-2 text-secondary">Account Settings</h6>
                 <div class="mr-5">
                     <hr class="m-0 bg-secondary">
                 </div>
@@ -127,8 +141,10 @@
         <div class="mr-4 ml-3">
             <hr class="m-0 bg-secondary">
         </div>
-        <a href="{% url 'pages:about' %}" class="ml-2 text-decoration-none navlinkclr font-weight-bold text-light">About</a>
-        <a href="{% url 'pages:contact' %}" class="ml-2 text-decoration-none navlinkclr font-weight-bold text-light">Contact</a>
+        <a href="{% url 'pages:about' %}"
+            class="ml-2 text-decoration-none navlinkclr font-weight-bold text-light">About Us</a>
+        <a href="{% url 'pages:contact' %}"
+            class="ml-2 text-decoration-none navlinkclr font-weight-bold text-light">Contact Us</a>
         <div class="mr-5" style="margin-bottom: 5rem;">
             {% if request.user.is_authenticated %}
             <a href="{% url 'accounts:logout' %}"

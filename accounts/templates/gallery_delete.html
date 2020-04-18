@@ -1,44 +1,73 @@
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block javascript %}
-<script>
-    
-</script>
-{% endblock %}
+
 
 {% block content %}
- <!-- ****************** NAVIGATION BAR -->
- {% include 'profile_header.html' %}
 
-<h1 class="page-header">Gallery Photo Upload</h1>
-<div class="container">
+<body id="svgbg" class=" bg-light">
+    <style>
+        /* Large devices (laptops/desktops, 992px and up) */
+        @media only screen and (min-width: 768px) {
 
-    <div class="row mt-5">
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <div>
+            #svgbg {
+                background-image: url("{% static 'img/undraw_zoom_in.svg' %}");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                height: 100%;
+    
+            }
 
-                <form method="post" enctype="multipart/form-data" id="formUpload">
-                    {% csrf_token %}
+        }
+       
+    </style>
+    <!-- ****************** NAVIGATION BAR -->
+    {% include 'profile_header.html' %}
+    <div class="container bg-light rounded-lg mt-md-5">
+        <h4 class="page-header font-weight-bold pt-3">Delete Gallery Photo</h4>
+        <hr style="background-color: #ff9900;">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div>
 
-                    <button type="submit" class="btn btn-danger ">Delete</button>
-                </form>
-               
+                    <form method="post" enctype="multipart/form-data" id="formUpload">
+                        {% csrf_token %}
+
+                        <button type="submit" class="btn btn-danger ">Delete</button>
+                    </form>
+
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <img src="img/shardayyy-photography-fJzmPe-a0eU-unsplash.jpg" alt="" width="100%" height="100%">
             </div>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-            <img src="img/shardayyy-photography-fJzmPe-a0eU-unsplash.jpg" alt="" width="100%" height="100%">
+        <div class="row mb-5 pb-3" style="margin-top: 20px">
+            {% for photo in photos %}
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"">
+                <img src="{{ photo.image.url }}" class="" width="100%" height="auto" style="object-fit: contain;">
+            </div>
+            {% endfor %}
         </div>
+
     </div>
-    <div class="row mb-5" style="margin-top: 20px">
-        {% for photo in photos %}
-        <div class="col-4">
-            <img src="{{ photo.image.url }}" class="" width="100%" height="300" style="object-fit: contain;">
-        </div>
-        {% endfor %}
+
+</body>
+
+
+
+
+<div style="background-color: #ff9900;" class="m-0 w-100">
+    <div class=" px-5 py-2">
+        <hr class=" bg-light m-0">
+    </div>
+    
+    <div class=" d-flex justify-content-center">
+        <p class=" text-dark font-weight-bold">© 2020 AroundTz</p>
     </div>
 
 </div>
 
-
+{% include 'footer.html' %}
 {% endblock %}

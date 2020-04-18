@@ -24,8 +24,8 @@
         $("#modalCrop").on("shown.bs.modal", function () {
             $image.cropper({
                 viewMode: 1,
-               // aspectRatio: 1 / 1,
-               // aspectRatio: 16 / 9,
+                // aspectRatio: 1 / 1,
+                // aspectRatio: 16 / 9,
                 aspectRatio: 1.91 / 1,
                 minCropBoxWidth: 200,
                 minCropBoxHeight: 200,
@@ -55,7 +55,7 @@
             // ...
         });
 
-      
+
         /* SCRIPT TO COLLECT THE DATA AND POST TO THE SERVER */
         $(".js-crop-and-upload").click(function () {
             var cropData = $image.cropper("getData");
@@ -72,9 +72,8 @@
 
 {% block content %}
 
-{% include 'profile_header.html' %}
-
-<h1 class="page-header">Cover Image</h1>
+<h4 class="page-header font-weight-bold pt-3">Cover Image Upload</h4>
+<hr style="background-color: #ff9900;">
 <!-- FORM TO UPLOAD THE IMAGES -->
 <form method="post" enctype="multipart/form-data" id="formUpload">
     {% csrf_token %}
@@ -82,7 +81,19 @@
     <br>
     <!-- <button type="submit">Upload</button> -->
 </form>
-
+<!-- CONTAINER TO DISPLAY THE CROPPED IMAGES -->
+<div class="row mb-5 pb-5">
+    {% for photo in photos %}
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <img src="{{ photo.image.url }}" class="" width="100%" height="auto">
+        <div class="mt-2">
+            <a href="{% url 'accounts:cover_delete' photo.user_id %}" class=" text-decoration-none text-danger p-1"><i
+                class="far fa-trash-alt"></i> Delete</a>
+        </div>
+        
+    </div>
+    {% endfor %}
+</div>
 <!-- MODAL TO CROP THE IMAGE -->
 <div class="modal fade" id="modalCrop">
     <div class="modal-dialog">
@@ -106,19 +117,11 @@
                     </button>
                 </div>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Nevermind</button>
-                <button type="button" class="btn btn-primary js-crop-and-upload">Crop and upload</button>
+                <button type="button" class="btn text-light js-crop-and-upload" style="background-color: #ff9900;">Crop and upload</button>
             </div>
         </div>
     </div>
 </div>
 
-<!-- CONTAINER TO DISPLAY THE CROPPED IMAGES -->
-<div class="row mb-5" style="margin-top: 20px">
-    {% for photo in photos %}
-    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-        <img src="{{ photo.image.url }}" class="" width="100%" height="auto">
-        <a href="{% url 'accounts:cover_delete' photo.user_id %}" class=" text-decoration-none text-danger p-2"><i class="far fa-trash-alt"></i></a>
-    </div>
-    {% endfor %}
-</div>
+
 {% endblock %}
