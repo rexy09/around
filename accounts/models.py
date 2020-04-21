@@ -1,10 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings  # settings.AUTH_USER_MODEL
 from django_countries.fields import CountryField
-# from django.contrib.gis.db.models import PointField
 from django.contrib.gis.db import models
-from django.contrib.gis.geos import Point
-from django.contrib.gis.geos import GEOSGeometry
 
 from activity_log.models import UserMixin
 

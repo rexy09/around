@@ -9,6 +9,7 @@ from django.contrib.gis.geos import Point
 import geocoder # Getting user location
 from django.core.mail import send_mail, BadHeaderError
 from .forms import ContactForm
+from django.http import JsonResponse
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -22,10 +23,13 @@ def get_coordinates(request):
     global lng
     lat = request.GET.get('lat', None)
     lng = request.GET.get('lng', None)
-    coordinates = [lat,lng]
+    coordinates = {
+        'lat': lat,
+        'lng': lng,
+        }
     print(lat+"---"+lng)
     
-    return coordinates
+    return JsonResponse(coordinates)
 
 def index_view(request, *args, **kargs):
 	
@@ -141,9 +145,7 @@ def search_category(request, *args, **kargs):
     return render(request, 'search.html', context)
 
 def orders_view(request, *args, **kargs):
-        
-    user_list = User.objects.all()
-    paginator = Paginator(user_list, 10)
+            
     context = {}
     return render(request, 'orders.html', context)
 

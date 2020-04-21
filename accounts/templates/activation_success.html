@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+    
+    {% include 'header.html' %}
+    <div class="container bg-light mt-5">
+       
+        <div class="alert alert-success" role="alert">
+            Thank you for your email confirmation, Now you can <a href="{% url 'accounts:login' %}" class=" font-weight-bold text-success">login.</a>
+            <br><br>
+            <a href="{% url 'accounts:login' %}" class="btn btn-outline-success font-weight-bold">login</a>
+          </div>
+
+    </div>
+
+    <div style="background-color: #ff9900;" class="m-0 w-100 fixed-bottom">
+        <div class=" px-5 py-2">
+            <hr class=" bg-light m-0">
+        </div>
+
+        <div class=" d-flex justify-content-center">
+            <p class=" text-dark font-weight-bold">© 2020 AroundTz</p>
+        </div>
+
+    </div>
+
+    {% include 'footer.html' %}
+</body>
+
+{% endblock %}

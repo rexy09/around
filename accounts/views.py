@@ -12,7 +12,7 @@ from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.contrib import messages
 # Forms
 from .models import BusinessInfo, BusinessDetails, CoverImg, ProfileImg, Gallery
-from post.models import *
+from post.models import Post
 from .forms import SignUpForm, LoginForm, BusinessInfoForm, BusinessDetailsForm, CoverImgForm, ProfileImgForm, GalleryImgForm
 from .tokens import account_activation_token
 # location point
@@ -128,10 +128,13 @@ def activate(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        return redirect('accounts:activation_success')
+        # return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
     else:
-        return HttpResponse('Activation link is invalid!')
+        return HttpResponse('<h4>Invalid Activation link!</h4>')
+
+def activation_success(request):
+    return render(request, 'activation_success.html', {})
 
 
 # Password rest

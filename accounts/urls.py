@@ -1,5 +1,4 @@
-from django.urls import path, include
-from django.conf.urls import url
+from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
 from django.conf import settings
@@ -13,6 +12,7 @@ urlpatterns = [
     path('signup/', views.signup_view, name='signup'),
     path('logout/', views.logout_view, name='logout'),
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
+    path('activation_success/', views.activation_success, name='activation_success'),
     path('email_sent', views.confirmation_email, name='email_sent'),
     #password reset confirm 
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'), name='password_reset_confirm'),
