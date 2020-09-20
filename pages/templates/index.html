@@ -2,7 +2,8 @@
 {% load static %}
 {% block content %}
 
-<body>
+<body class="bg-light">
+
     {% include 'header.html'%}
     <!--********** Contents ************-->
     <div style="background-color: #ff9900;" class="m-0 w-100">
@@ -111,78 +112,295 @@
                             <p class="font-weight-bold">Restaurants</p>
                         </div>
                     </div>
+                    <div class="d-flex flex-column m-2">
+                        <div class="p-0 rounded-circle"
+                            style="background-color: #ff9900; border-radius: 50%; height: 88px; width: 90px;">
+                            <a class="" href="{% url 'pages:search_cat' query='other'%}">
+                                <div class="mx-4 text-center" style="margin-top: 28px;">
+                                    <i class="fas fa-plus fa-2x text-light"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="py-1 text-center text-wrap" style="width: 90px;">
+                            <p class="font-weight-bold">Other</p>
+                        </div>
+                    </div>
 
                 </div>
             </div>
         </div>
-        <h1 class=" font-weight-bold mt-5">Features</h1>
-        <div style="height: 5px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3">
-        </div>
-        <div class="row mt-5">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <img src="{% static 'img/map-colour-thumbnail.png' %}" alt="" width="100%" height="auto">
+        <style>
+            a:focus {
+                outline: none;
+            }
+        </style>
+        <div class="">           
+            {% if sponsored%}
+            <h2 class=" font-weight-bold mt-5">Sponsored</h2>
+            <div style="height: 4px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3">
+            </div>
+            {% endif %}
+            <div class="autoplay mx-3">
+                {% for post in sponsored %}
+                
+                <div class="">
+                    <div class="d-flex justify-content-center">
+
+                        <div class="card m-2 border-0" style="max-width: 540px; height:18rem;">
+                            <a href="{% url 'post:view_post' post.id%}">
+                                <img src="{{ post.image.url }}" class="card-img-top border-0" height="200" width="100%"
+                                    alt="..." style="object-fit:cover;">
+                            </a>
+                            <span class="border-bottom"></span>
+                            <div class="card-body">
+                                <a href="{% url 'post:view_post' post.id%}" class=" text-decoration-none text-dark">
+                                    <div class="">
+                                        <h4 class="card-title mb-1"
+                                            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                            {{post.title}}
+                                        </h4>
+                                    </div>
+
+                                </a>
+
+                                <h5 class="card-title mb-1" style="color: #ff9900;">TSh
+                                    {{ post.price|floatformat:"0" }}/=</h5>
+                                <!-- <div style="text-overflow:ellipsis; overflow:hidden; height:4rem;">
+                                    <p class="card-text text-muted" style="line-height: 1;"><small>{{post.content}}</small>
+                                    </p>
+                                </div> -->
+
+                            </div>
+                            <!-- <div class="d-flex flex-row justify-content-end p-2">
+                                <div class=" mr-auto ml-2">
+                                    <p class="card-text text-muted"> <small>{{post.whenpublished}}</small></p>
+                                </div>
+                                <div class="mr-2">
+                                    <a href="sms:{{post.phone}}" style="color: #ff9900;">
+                                        <i class="fas fa-sms fa-2x"></i>
+                                    </a>
+                                </div>
+                                <div class="mr-1">
+                                    <a href="tel:{{post.phone}}" style="color: #ff9900;">
+                                        <i class="fas fa-phone-square-alt fa-2x"></i>
+                                    </a>
+                                </div>
+                                <a href="tel:{{post.phone}}" class="p-1 text-decoration-none" style="color: #ff9900;">
+                                    <span class="">{{post.phone}}</span>
+                                </a>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+              
+                {% empty %}
+                
+                {% endfor %}
             </div>
 
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class=" mt-5 pt-md-5">
-                    <h1 class=" font-weight-bold">Easy Search for nearby services.</h1>
-                    <div style="height: 5px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3"></div>
-                    <p class=" lead text-muted mt-3">Search for nearby services around you such as Mobile Money Agents
-                        (wakala), Fashion shops, Restaurants and Mobile and Accessories shops.</p>
-                    <a href="{% url 'pages:search' %}" class="btn btn-outline-light text-light font-weight-bold btn-lg"
-                        style="background-color: #ff9900;">Search Now</a>
+        </div>
+
+        <div class="">
+            <h2 class=" font-weight-bold mt-5">Daily Deals</h2>
+            <div style="height: 4px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3">
+            </div>
+            <div class="autoplay mx-3">
+
+                {% for post in posts %}
+                <div class="">
+                    <div class="d-flex justify-content-center">
+
+                        <div class="card m-2 border-0" style="max-width: 540px; height:18rem;">
+                            <a href="{% url 'post:view_post' post.id%}">
+                                <img src="{{ post.image.url }}" class="card-img-top border-0" height="200" width="100%"
+                                    alt="..." style="object-fit:cover;">
+                            </a>
+                            <span class="border-bottom"></span>
+                            <div class="card-body">
+                                <a href="{% url 'post:view_post' post.id%}" class=" text-decoration-none text-dark">
+                                    <div class="">
+                                        <h4 class="card-title mb-1"
+                                            style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                            {{post.title}}
+                                        </h4>
+                                    </div>
+
+                                </a>
+
+                                <h5 class="card-title mb-1" style="color: #ff9900;">TSh
+                                    {{ post.price|floatformat:"0" }}/=</h5>
+                                <!-- <div style="text-overflow:ellipsis; overflow:hidden; height:4rem;">
+                                    <p class="card-text text-muted" style="line-height: 1;"><small>{{post.content}}</small>
+                                    </p>
+                                </div> -->
+
+                            </div>
+                            <!-- <div class="d-flex flex-row justify-content-end p-2">
+                                <div class=" mr-auto ml-2">
+                                    <p class="card-text text-muted"> <small>{{post.whenpublished}}</small></p>
+                                </div>
+                                <div class="mr-2">
+                                    <a href="sms:{{post.phone}}" style="color: #ff9900;">
+                                        <i class="fas fa-sms fa-2x"></i>
+                                    </a>
+                                </div>
+                                <div class="mr-1">
+                                    <a href="tel:{{post.phone}}" style="color: #ff9900;">
+                                        <i class="fas fa-phone-square-alt fa-2x"></i>
+                                    </a>
+                                </div>
+                                <a href="tel:{{post.phone}}" class="p-1 text-decoration-none" style="color: #ff9900;">
+                                    <span class="">{{post.phone}}</span>
+                                </a>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="alert alert-secondary w-100 mx-4" role="alert">
+                    No post found!
                 </div>
 
+                {% endfor %}
+
+
+
+
             </div>
+
         </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
 
-        <div class="row mt-5">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="mt-5 pt-md-5">
+                $(".regular").slick({
 
-                    <h1 class=" font-weight-bold">Free Business Advertisement.</h1>
-                    <div style="height: 5px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3"></div>
-                    <p class=" lead text-muted mt-3">Advertise your business here to increase your sales and customers
-                        by posts.</p>
-                    <a href="{% url 'accounts:signup' %}"
-                        class="btn btn-outline-light text-light font-weight-bold btn-lg"
-                        style="background-color: #ff9900;">Get Started Now</a>
+                });
+            });
+
+            $('.autoplay').slick({
+                arrows: true,
+                dots: false,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                //speed: 300,
+                centerMode: false,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                swipeToSlide: true,
+                responsive: [{
+                        breakpoint: 1024,
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3,
+                            infinite: true,
+                            dots: false
+                        }
+                    },
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            dots: false,
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            });
+        </script>
+
+
+        <h2 class=" font-weight-bold mt-5">Features</h2>
+        <div style="height: 4px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3">
+        </div>
+        <!-- update -->
+        <div class="row w-100 m-0 mt- js-reveal pt-3">
+
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+
+                <div class=" d-flex flex-column mb-5  bg-white">
+                    <div class=" d-flex justify-content-center mt-5">
+                        <i class="fas fa-map-marked-alt fa-4x" style="color: #ff9900;"></i>
+                    </div>
+
+                    <h4 class=" text-center font-weight-bold mt-3 mx-2">Search for Nearby Services</h4>
+                    <div class="mx-2">
+                        <p class=" text-center text-muted">
+                            Be aware of available services around your location.
+                        </p>
+
+                    </div>
+                    <div class="d-flex justify-content-center pb-5">
+                        <a href="{% url 'pages:search' %}" class="btn btn-outline-secondary font-weight-bold"
+                            style="color: #ff9900;">Search Now</a>
+                    </div>
 
                 </div>
-
             </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
 
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <img src="{% static 'img/thumbnail.png' %}" alt="" width="100%" height="auto">
+                <div class=" d-flex flex-column mb-5  bg-white">
+                    <div class=" d-flex justify-content-center mt-5">
+                        <i class="fas fa-chart-line fa-4x" style="color: #ff9900;"></i>
+                    </div>
 
-            </div>
-        </div>
+                    <h4 class=" text-center font-weight-bold mt-3 mx-2">Grow your Business</h4>
+                    <div class=" mx-2">
+                        <p class=" text-center text-muted">
+                            Grow your business with us to increase your sales and customers.
 
-        <div class="row mt-5">
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <img src="{% static 'img/phone-conversation-colour.jpg' %}" alt="" width="100%" height="auto">
-            </div>
+                        </p>
 
-            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class=" mt-5 pt-md-5">
-                    <h1 class=" font-weight-bold">Call and Chat with Seller.</h1>
-                    <div style="height: 5px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3"></div>
-                    <p class=" lead text-muted mt-3">Easy way to start your conversation with a seller throungh call and
-                        sms for more details.</p>
-                    <a href="{% url 'post:posts' %}" class="btn btn-outline-light text-light font-weight-bold btn-lg"
-                        style="background-color: #ff9900;">Start Now</a>
+                    </div>
+                    <div class="d-flex justify-content-center pb-5">
+                        <a href="{% url 'accounts:signup' %}" class="btn btn-outline-secondary font-weight-bold"
+                            style="color: #ff9900;">Start Now</a>
+                    </div>
+
                 </div>
-
             </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12">
+
+                <div class=" d-flex flex-column mb-5 bg-white">
+                    <div class=" d-flex justify-content-center mt-5">
+                        <i class="fas fa-bullhorn fa-4x" style="color: #ff9900;"></i>
+                    </div>
+
+                    <h4 class=" text-center font-weight-bold mt-3 mx-2">Advertisement</h4>
+                    <div class=" mx-2">
+                        <p class=" text-center text-muted">
+                            Advertise your business here to be known to increase your sales and customers by posts.
+                        </p>
+
+                    </div>
+                    <div class=" d-flex justify-content-center pb-5">
+                        <a href="{% url 'post:posts' %}" class="btn btn-outline-secondary  font-weight-bold"
+                            style="color: #ff9900;">Get Started</a>
+                    </div>
+
+
+                </div>
+            </div>
+
+
         </div>
 
-        <div class="row mt-5">
+
+
+        <div class="row">
             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class=" mt-5 pt-md-5">
+                <div class=" my-5 pt-md-5">
                     <h1 class=" font-weight-bold">Shop Safe</h1>
                     <div style="height: 5px; background-color:#ff9900; width:100px;" class="mr-auto mt-2 mb-3"></div>
                     <p class=" lead text-muted mt-3">Protect yourself from COVID-19 shop safe and avoid unnecessary
                         movement by using Around Tz.</p>
+                        <p class=" lead text-muted mt-3"> {% lorem 25 w %}</p>
                     <a href="{% url 'pages:search' %}" class="btn btn-outline-light text-light font-weight-bold btn-lg"
                         style="background-color: #ff9900;">Shop Now</a>
                 </div>
@@ -196,26 +414,7 @@
         </div>
 
     </div>
-
-
-
-
-    <div style="background-color: #ff9900;" class="m-0 w-100">
-
-        <div class=" px-5 py-2">
-            <hr class=" bg-light m-0">
-        </div>
-
-        <div class=" d-flex justify-content-center">
-
-            <p class=" text-dark font-weight-bold"> &copy; <span id="year"></span> AroundTz</p>
-        </div>
-        <script>
-            document.getElementById("year").innerHTML = new Date().getFullYear();
-        </script>
-
-    </div>
-
+ 
     {% include 'footer.html' %}
 </body>
 {% endblock %}

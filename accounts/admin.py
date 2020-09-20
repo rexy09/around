@@ -3,8 +3,9 @@ from .models import User, BusinessInfo, BusinessDetails, CoverImg, ProfileImg, G
 
 # Register your models here.
 class UserAdmin(admin.ModelAdmin):
-    list_display=('username','email','user_type','is_staff','is_active')
-
+    list_display = ('username','email','user_type','is_staff','is_active',)
+    search_fields = ('id','username','email')
+    list_filter = ('user_type','is_staff','is_active')
 
 admin.site.register(User, UserAdmin)
 # business info

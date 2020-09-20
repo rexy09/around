@@ -1,30 +1,41 @@
 {% load static %}
 <header>
     <!-- ****************** NAVIGATION BAR -->
-    <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 bg-light" style="position: -webkit-sticky; position:sticky; top:0;">
         <a class="navbar-brand text-secondary " href="{% url 'index' %}">
             <div class="d-flex flex-row">
-                <img src="{% static 'icon/around me.png' %}" width="auto" height="40" class="d-inline-block align-top"
+                <img src="{% static 'icon/aroundme.png' %}" width="auto" height="40" class="d-inline-block align-top"
                     alt="...">
-                <h4 class="font-weight-bolder mt-2 navlinkclr text-secondary">Around Tz</h4>
+                <h4 class="font-weight-bolder mt-2 navlinkclr text-secondary">AroundTz</h4>
             </div>
         </a>
-        <div class="d-none d-sm-none d-md-none d-lg-block d-xl-block">
-            <div class="d-flex flex-row mr-auto ml-5 ">
+        <div class=" ml-auto d-none d-sm-none d-md-none d-lg-block d-xl-block">
+            <div class="d-flex flex-row">
                 <a href="{% url 'index' %}" class=" text-decoration-none text-secondary mx-3 font-weight-bold">
-                    <div class="navlinkclr">Home</div>
+                    <i class="fas fa-home navlinkclr"></i>
+                   
                 </a>
                 <a href="{% url 'post:posts' %}" class="text-decoration-none text-secondary mx-3 font-weight-bold">
-                    <div class="navlinkclr">Posts</div>
+                    <div class="navlinkclr">Deals</div>
                 </a>
                 <a href="{% url 'pages:about' %}" class="text-decoration-none text-secondary mx-3 font-weight-bold">
-                    <div class="navlinkclr">About Us</div>
+                    <div class="navlinkclr">About</div>
                 </a>
                 <a href="{% url 'pages:contact' %}" class="text-decoration-none text-secondary mx-3 font-weight-bold">
-                    <div class="navlinkclr">Contact Us</div>
+                    <div class="navlinkclr">Contact</div>
                 </a>
+                <a href="{% url 'pages:help' %}" class="text-decoration-none text-secondary mx-3 font-weight-bold">
+                    <div class="navlinkclr">Help</div>
+                </a>
+                 
+                 
+                
             </div>
+            
         </div>
+        <!-- GOOGLE TRANSLATION -->
+        <div id="google_translate_element"></div>
+        
         <div class="d-flex flex-row">
             <button class="navbar-toggler border-0 m-2 p-0" type="button" aria-expanded="false"
                 aria-label="Toggle navigation" onclick="openNav()">
@@ -42,7 +53,7 @@
             <a href="{% url 'accounts:myprofile' %}" class="text-decoration-none text-secondary font-weight-bold m-2"
                 >
                 {% if not user.profileimg.image.url %}
-                <i class="fas fa-user fa-lg navlinkclr"></i>
+                <i class="fas fa-user-circle fa-lg navlinkclr"></i>
                 <span class="navlinkclr">{{user.username}}</span>
                 {% else %}
                 <img src="{{ user.profileimg.image.url }}" alt="" srcset="" width="30" height="30" class="border rounded-circle mr-2 border-muted"><span class="navlinkclr">{{user.username}}</span>
@@ -51,35 +62,57 @@
             
             {% else %}
             <a class="text-decoration-none text-secondary m-2" href="{% url 'accounts:myprofile' %}">
-                <i class="fas fa-user fa-lg navlinkclr"></i>
+                <i class="fas fa-user-circle fa-lg navlinkclr"></i>
             </a>
             {% endif %}
 
         </div>
 
-        <div class="ml-2 d-none d-sm-none d-md-none d-lg-block d-xl-block">
+        <div class=" d-none d-sm-none d-md-none d-lg-block d-xl-block">
             {% if request.user.is_authenticated %}
             <a href="{% url 'accounts:logout' %}" class="btn text-decoration-none m-1 font-weight-bold btn-sm"
-                style="font-size: 1.2rem; color:azure;background-color:#ff9900">logout</a>
+                style="font-size: 1rem; color:azure;background-color:#ff9900">logout</a>
             {% else %}
             <a href="{% url 'accounts:login' %}" class="btn text-decoration-none m-1 font-weight-bold btn-sm"
-                style="font-size: 1.2rem; color:azure;background-color:#ff9900">login</a>
+                style="font-size: 1rem; color:azure;background-color:#ff9900">login</a>
             {% endif %}
         </div>
     </nav>
 
+   
+
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en',includedLanguages: 'en,sw',layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+    }
+    </script>
+    
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+        $(document).ready(function(){
+          $('#google_translate_element').bind('DOMNodeInserted', function(event) {
+            $('.goog-te-menu-value span:first').html('English');
+            $('.goog-te-menu-frame.skiptranslate').load(function(){
+              setTimeout(function(){
+                $('.goog-te-menu-frame.skiptranslate').contents().find('.goog-te-menu2-item-selected .text').html('Translate');    
+              }, 100);
+            });
+          });
+        });
+      </script>
+
 
     <!-- ************* SIDE NAVIGATION ************** -->
-    <div id="mySidenavv" class="sidenav bg-dark">
+    <div id="mySidenavv" class="sidenav">
         <a href="javascript:void(0)" class="closebtn text-secondary" onclick="closeNav()">&times;</a>
         <a href="{% url 'index' %}" class=" text-decoration-none">
-            <h3 class="font-weight-bold navlinkclr text-light">Around Tz</h3>
+            <h3 class="font-weight-bold navlinkclr text-light">AroundTz</h3>
         </a>
         {% if request.user.is_authenticated %}
         <a href="{% url 'accounts:myprofile' %}" class="text-decoration-none text-light font-weight-bold"
             style="color:#ff9900">
             {% if not user.profileimg.image.url %}
-                <i class="fas fa-user fa-lg navlinkclr"></i>
+                <i class="fas fa-user-circle fa-lg navlinkclr"></i>
                 <span class="navlinkclr">{{user.username}}</span>
                 {% else %}
                 <img src="{{ user.profileimg.image.url }}" alt="" srcset="" width="30" height="30" class="border rounded-circle mr-2 border-muted"><span class="navlinkclr">{{user.username}}</span>
@@ -87,7 +120,7 @@
         </a>
         {% else %}
         <a class="text-decoration-none text-light font-weight-bold" href="{% url 'accounts:myprofile' %}">
-            <i class="fas fa-user fa-1x navlinkclr text-secondary"></i> <span class=" text-light navlinkclr">Profile</span> 
+            <i class="fas fa-user-circle fa-1x navlinkclr text-secondary"></i> <span class=" text-light navlinkclr">Profile</span> 
         </a>
         {% endif %}
         <a class="text-decoration-none text-light navlinkclr mt-1 font-weight-bold" href="{% url 'pages:search' %}">
@@ -96,12 +129,12 @@
         </a>
         <a class="text-decoration-none text-light navlinkclr mt-1 font-weight-bold" href="{% url 'post:posts' %}">
             <i class="fas fa-th fa-1x navlinkclr text-light"></i>
-            <span class=" text-light navlinkclr">Posts</span>
+            <span class=" text-light navlinkclr">Deals</span>
         </a>
 
         <div class="d-flex flex-column overflow-auto mb-2 ml-4">
             <div class="vertical-nav">
-                <h5 class="pt-3 font-weight-bold text-light">Search By Category</h5>
+                <h5 class="pt-3 font-weight-bold text-light">Search by category</h5>
                 <div class="mr-4">
                     <hr class="m-0 bg-secondary">
                 </div>
@@ -125,6 +158,11 @@
                     <li class="nav-item">
                         <a class="nav-link d-flex flex-row side" href="{% url 'pages:search_cat' query='restaurant'%}">
                             <small>Restaurants</small>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link d-flex flex-row side" href="{% url 'pages:search_cat' query='other'%}">
+                            <small>Other</small>
                         </a>
                     </li>
                     <!-- <li class="nav-item">
@@ -199,9 +237,8 @@
         <div class="mr-4 ml-4">
             <hr class="m-0 bg-secondary">
         </div>
-        <a href="{% url 'pages:about' %}" class="ml-2 text-decoration-none navlinkclr font-weight-bold"> <span class="navlinkclr text-light"> About Us</span></a>
-        <a href="{% url 'pages:contact' %}" class="ml-2 text-decoration-none navlinkclr font-weight-bold"> <span class="navlinkclr text-light">Contact Us</span> </a>
-        <div class="mr-5 ml-4">
+     
+        <div class="mr-5 ml-4 mb-5">
             {% if request.user.is_authenticated %}
             <a href="{% url 'accounts:logout' %}"
                 class="btn text-decoration-none m-1 font-weight-bold btn-sm text-center p-0"
@@ -212,7 +249,14 @@
                 style="font-size: 1.2rem; color:azure;background-color:#ff9900">login</a>
             {% endif %}
         </div>
-        <div style="margin-bottom: 5rem;"></div>
+
+        <div class="d-flex flex-column" style="margin-bottom: 5rem;">
+            <a href="{% url 'pages:about' %}" class="text-decoration-none navlinkclr"> <span class="navlinkclr text-light"> About Us</span></a>
+            <a href="{% url 'pages:contact' %}" class="text-decoration-none navlinkclr"> <span class="navlinkclr text-light">Contact Us</span> </a>
+            <a href="{% url 'pages:help' %}" class="text-decoration-none navlinkclr"> <span class="navlinkclr text-light">Help</span> </a>
+            <a href="{% url 'pages:terms' %}" class="text-decoration-none navlinkclr"> <span class="navlinkclr text-light">Terms & Privacy</span> </a>
+        </div>
+       
     </div>
 
 </header>

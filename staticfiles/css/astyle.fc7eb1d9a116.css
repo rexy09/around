@@ -1,0 +1,228 @@
+body {
+    font-family: Arial, sans-serif;
+
+}
+
+* {
+    box-sizing: border-box;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.bg-img {
+    background-attachment: fixed;
+    background-image: url("");
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #f1f1f1;
+}
+
+
+li a {
+    display: block;
+    color: rgb(255, 255, 255) !important;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color on hover */
+li a:hover {
+    background-color: #555;
+    color: white;
+}
+
+.acttest {
+    color: white !important;
+}
+
+
+
+/*nav {
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}*/
+
+
+/* **************** vertical navigation ****************** */
+.navlinkclr:hover {
+    color: #ff9900 !important;
+}
+
+.navlinkclr:active {
+    color: #ff9900 !important;
+}
+
+.vertical-nav small {
+    font-size: 1rem;
+    color: rgb(255, 255, 255);
+}
+
+.vertical-nav small:hover {
+    color: #ff9900;
+}
+
+.vertical-nav .side small:hover {
+    color: #ff9900;
+}
+
+.vertical-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: transparent;
+
+}
+
+.vertical-nav li {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.vertical-nav li a {
+    display: block;
+    color: rgb(255, 255, 255);
+    padding: 1px 20px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    box-sizing: border-box;
+    position: relative;
+}
+
+/* Change the link color on hover */
+.vertical-nav li a:hover {
+    background-color: transparent;
+}
+
+/* *********** SIDE NAVIGATION STYLE ****************/
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 15px;
+}
+
+.sidenav a {
+    padding: 0px 0px 0px 30px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #000000;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 40px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 62%;
+    width: auto;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: rgb(255, 166, 0) !important;
+    background-color: #ffffff80;
+    font-weight: bold;
+    font-size: 30px;
+    transition: 0.5s ease;
+    /* border-radius: 50%; */
+    user-select: none;
+    -webkit-user-select: none;
+    margin: 0;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+/* Add a pointer when hovering over the thumbnail images */
+.cursor {
+    cursor: pointer;
+}
+
+.next {
+    right: 0;
+    border-radius: 5px 0 0 5px;
+    /* border-radius: 50%; */
+
+}
+
+.prev {
+    left: 0;
+    border-radius: 0 5px 5px 0;
+    /* border-radius: 50%; */
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(173, 173, 173, 0.8);
+}
+
+
+/* $$$$$$$$$$$ Cards $$$$$$$$*/
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    /*width: 40%;*/
+
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}

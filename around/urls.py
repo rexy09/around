@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls import url
 from pages import views
 from django.contrib.auth import views as auth_views
 from django.conf import settings
@@ -27,6 +26,8 @@ urlpatterns = [
     path('pages/', include('pages.urls', namespace='pages')),
     path('accounts/', include('accounts.urls', namespace='accounts')),
     path('post/', include('post.urls', namespace='post')),
+    path('administrator/', include('administrator.urls', namespace='administrator')),
+    path('payment/', include('payment.urls', namespace='payment')),
     # password reset
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'), name='password_reset_confirm'),
     path('password_reset/', auth_views.PasswordResetView.as_view(template_name='registration/password_reset.html'), name='password_reset'),

@@ -1,14 +1,15 @@
 body {
-    font-family: Arial, sans-serif;
-
+    font-family: 'Karla' !important;
+    margin: 0;
+    padding: 0;
 }
 
 * {
     box-sizing: border-box;
 }
 
-p {
-    font-family: Arial, Helvetica, sans-serif;
+p, pre {
+    font-family: 'Actor' !important;
 }
 
 .bg-img {
@@ -115,10 +116,10 @@ li a:hover {
     z-index: 1;
     top: 0;
     left: 0;
-    background-color: #ffffff;
+    background-color: #2f2f2b;
     overflow-x: hidden;
     transition: 0.5s;
-    padding-top: 60px;
+    padding-top: 15px;
 }
 
 .sidenav a {
@@ -138,7 +139,7 @@ li a:hover {
     position: absolute;
     top: 0;
     right: 25px;
-    font-size: 36px;
+    font-size: 40px;
     margin-left: 50px;
 }
 
@@ -150,6 +151,10 @@ li a:hover {
     .sidenav a {
         font-size: 18px;
     }
+}
+
+.bottom-nav {
+    background-color:#2f2f2bf1;
 }
 
 /* Next & previous buttons */
@@ -202,14 +207,14 @@ li a:hover {
 
 /* $$$$$$$$$$$ Cards $$$$$$$$*/
 .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
     /*width: 40%;*/
 
 }
 
 .card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 8px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Extra small devices (phones, 600px and down) */

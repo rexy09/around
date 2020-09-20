@@ -26,3 +26,19 @@ class PostImgForm(forms.ModelForm):
     class Meta:
         model = PostImage
         fields = ['file', ]
+
+
+class SponsoredPostForm(forms.ModelForm):
+    PLANS = [
+        ('','Select plan'),
+        (7,'7 Days'),
+        (30,'30 Days'),
+        (60,'3 Months' ),
+        (120,'6 Months'),
+        (366,'1 Year'),
+    ]
+    plan = forms.IntegerField(label='', required=True, widget=forms.Select(choices=PLANS))
+    class Meta:
+        model = SponsoredPost
+        fields = '__all__'
+        exclude = ['post','sponsored']        

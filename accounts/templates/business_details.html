@@ -98,8 +98,6 @@
         });
         // Add zoom and rotation controls to the map.
 
-
-
         var marker = new mapboxgl.Marker({})
         map.addControl(
             new mapboxgl.GeolocateControl({
@@ -134,16 +132,7 @@
             inputs[i].onclick = switchLayer;
         }
     </script>
-    <div style="background-color: #ff9900;" class="m-0 w-100">
-        <div class=" px-5 py-2">
-            <hr class=" bg-light m-0">
-        </div>
-
-        <div class=" d-flex justify-content-center">
-            <p class=" text-dark font-weight-bold">© 2020 AroundTz</p>
-        </div>
-
-    </div>
+   
 
     {% include 'footer.html' %}
 </body>

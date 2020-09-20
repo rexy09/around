@@ -14,12 +14,12 @@ from activity_log.models import UserMixin
 
 class User(AbstractUser, UserMixin):
     USER_TYPE_CHOICES = (
-        (0,'Null'),
-        (1,'Normal'),
-        (2,'Business'),
+        ('null','Null'),
+        ('normal','Normal'),
+        ('business','Business'),
     )
     email = models.EmailField(error_messages={'unique': 'A user with that email already exists.'}, unique=True, blank=False, null=False)
-    user_type = models.PositiveSmallIntegerField(choices=USER_TYPE_CHOICES, default=0)
+    user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES,)
     
     
 
@@ -36,7 +36,7 @@ class BusinessInfo(models.Model):
         ('money agent', 'Money Agent'),
         ('other', 'Other'),    
     ]
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,related_name='user_info',  on_delete = models.CASCADE, primary_key=True, unique=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL,related_name='business_info',  on_delete = models.CASCADE, primary_key=True, unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     gender = models.CharField(max_length=10, choices=GENDER_CHOISES)
@@ -59,7 +59,7 @@ class BusinessDetails(models.Model):
     #     ('money agent', 'Money Agent'),
     #     ('other', 'Other'),    
     # ]
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, primary_key=True, unique=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="business_detail", on_delete = models.CASCADE, primary_key=True, unique=True)
     description = models.TextField(null=True, blank=True)
     # business_category = models.CharField(max_length=100, null=True, blank=True, choices=BUSINESS_CHOICES)
     longitude = models.DecimalField(max_digits=19, decimal_places=16, null=True, blank=True)
@@ -72,7 +72,7 @@ class BusinessDetails(models.Model):
 
 
 class CoverImg(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, primary_key=True, unique=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="cover_img", on_delete = models.CASCADE, primary_key=True, unique=True)
     image = models.ImageField(upload_to='cover_image/')
     uploaded_at = models.DateTimeField(auto_now=True)
     
@@ -86,13 +86,13 @@ class CoverImg(models.Model):
 
 
 class ProfileImg(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete = models.CASCADE, primary_key=True, unique=True)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="profile_img", on_delete = models.CASCADE, primary_key=True, unique=True)
     image = models.ImageField(upload_to='profile_image/')
     uploaded_at = models.DateTimeField(auto_now=True)
     
    
 class Gallery(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="gallery", on_delete = models.CASCADE)
     image = models.ImageField(upload_to='gallery_image/')
     date_updated = models.DateTimeField(auto_now=True)
     

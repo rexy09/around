@@ -6,19 +6,23 @@ from post.models import *
 from django.contrib.gis.geos import fromstr
 from django.contrib.gis.db.models.functions import Distance
 from django.contrib.gis.geos import Point
-import geocoder # Getting user location
 from django.core.mail import send_mail, BadHeaderError
 from .forms import ContactForm
 from django.http import JsonResponse
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+import random
 
-# Create your views here.
+
+# from background_task import background
+# @background(schedule=60)
+# def hello():
+# 	print("Hello World!")
 
 lng = float(39.27492159469202)
 lat = float(-6.819700757297852)
 def get_coordinates(request):
-    print("am receiving coordinates!!!!")
+    # receiving coordinates
     global lat
     global lng
     lat = request.GET.get('lat', None)
@@ -26,15 +30,20 @@ def get_coordinates(request):
     coordinates = {
         'lat': lat,
         'lng': lng,
-        }
-    print(lat+"---"+lng)
-    
+        }    
     return JsonResponse(coordinates)
 
+
 def index_view(request, *args, **kargs):
-	
-	context = {}
-	return render(request, 'index.html', context)
+    post_list = Post.objects.filter(sponsored_post__sponsored=True).all()
+    sponsored = random.sample(list(post_list), len(post_list))
+    posts = Post.objects.all()
+    
+    context={
+        'posts':posts,
+        'sponsored':sponsored,
+        }
+    return render(request, 'index.html', context)
 
 
 def profile_view(request, *args, **kargs):
@@ -68,12 +77,7 @@ def gallery(request, *args, **kargs):
     return render(request, 'gallery-all.html', context)
 
 
-def search_view(request, *args, **kargs):
-    g = geocoder.ipinfo('me')
-    print(lat)
-    print(lng) 
-    print(g.city)
- 
+def search_view(request, *args, **kargs):     
     longitude = float(lng)
     latitude = float(lat)
     user_location = Point(longitude, latitude, srid=4326)
@@ -83,7 +87,6 @@ def search_view(request, *args, **kargs):
         query_set = Q(city__icontains=query)|Q(business_name__icontains=query)|Q(street__icontains=query)|Q(business_type__icontains=query)
         infos_list = BusinessInfo.objects.filter(query_set)
         details = BusinessDetails.objects.all().annotate(distance=Distance('location', user_location)).order_by('distance')
-        covers = CoverImg.objects.all()
         
         page = request.GET.get('page', 1)
 
@@ -98,7 +101,6 @@ def search_view(request, *args, **kargs):
     else:
         details = BusinessDetails.objects.annotate(distance=Distance('location', user_location)).order_by('distance')
         infos_list = BusinessInfo.objects.all()
-        covers = CoverImg.objects.all()
         
         page = request.GET.get('page', 1)
 
@@ -112,9 +114,7 @@ def search_view(request, *args, **kargs):
     
     context = {
         'details':details,
-        'infos':infos,
-        'covers':covers, 
-  
+        'infos':infos,  
 	}
     return render(request, 'search.html', context)
 
@@ -177,3 +177,9 @@ def contact_view(request, *args, **kargs):
 
 def successView(request):
     return render(request, "success_email.html", {})
+
+def helpView(request):
+    return render(request, 'help.html', {})
+
+def termsView(request):
+    return render(request, 'terms.html', {})

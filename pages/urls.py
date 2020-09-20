@@ -13,6 +13,8 @@ urlpatterns = [
     path('contact/', views.contact_view, name='contact'),
     path('getcoords/', views.get_coordinates, name='getcoords'),
     path('success/', views.successView, name='success'),
+    path('help/', views.helpView, name='help'),
+    path('terms&privacy/', views.termsView, name='terms'),
 
 
 ]

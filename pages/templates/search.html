@@ -5,14 +5,14 @@
 
 <body>
     {% include 'header.html' %}
-    <div class="container-fluid">
+    <div class="container-fluid" style="min-height: 550px;">
         <div class="row mt-2 mb-5" style="height: 100%">
             <div
-                class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 m-1 d-none d-sm-none d-md-none d-lg-block d-xl-block p-0">
-                <h5 class="font-weight-bold ml-1">Search By Category</h5>
-                <div class="mr-4 ml-1">
+                class="col-xl-2 col-lg-2 col-md-2 col-sm-12 col-xs-12 m-1 d-none d-sm-none d-md-none d-lg-block d-xl-block p-0 border-right">
+                <h5 class="font-weight-bold ml-1">Search by category</h5>
+                <div class="mx-1">
                     <hr class="m-0">
-                </div>
+                </div> 
                 <div class="vertical-nav">
                     <div class="nav flex-column">
 
@@ -20,23 +20,39 @@
                             href="{% url 'pages:search_cat' query='money agent'%}">
                             <span class="navlinkclr">Money Agents</span>
                         </a>
-
+                        <div class="mx-1">
+                            <hr class="m-0">
+                        </div> 
 
                         <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold"
                             href="{% url 'pages:search_cat' query='mobile & accessories'%}">
                             <span class="navlinkclr">Mobile & Accessories</span>
                         </a>
+                        <div class="mx-1">
+                            <hr class="m-0">
+                        </div> 
 
 
                         <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold"
                             href="{% url 'pages:search_cat' query='fashion' %}">
                             <span class="navlinkclr">Fashion</span>
                         </a>
+                        <div class="mx-1">
+                            <hr class="m-0">
+                        </div> 
 
 
                         <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold"
                             href="{% url 'pages:search_cat' query='restaurant'%}">
                             <span class="navlinkclr">Restaurants</span>
+                        </a>
+                        <div class="mx-1">
+                            <hr class="m-0">
+                        </div> 
+
+                        <a class="nav-link d-flex flex-row text-decoration-none text-dark font-weight-bold"
+                            href="{% url 'pages:search_cat' query='other'%}">
+                            <span class="navlinkclr">Other</span>
                         </a>
 
                         <!-- <li class="nav-item">
@@ -110,13 +126,13 @@
             <div class="col mt-1">
                 <div class="row">
                     <div class=" col-12">
-                        <h4 class=" ml-3">Search for available sevices.</h4>
+                        <h5 class=" ml-3">Search for available services.</h5>
                     </div>
                     <div class="col-12 mt-2">
                         <form action="{% url 'pages:search' %}" method="POST" class="">
                             {% csrf_token %}
-                                <div class=" row w-100 px-2 m-0">
-                                    <!-- <div class="col-2 p-0">
+                            <div class=" row w-100 px-2 m-0">
+                                <!-- <div class="col-2 p-0">
                                         <select class="form-control w-100" name="cat">
                                             <option value="all">All</option>
                                             <option value="money agent">Money Agents</option>
@@ -125,17 +141,17 @@
                                             <option value="restaurants">Restaurants</option>
                                           </select>                                    
                                     </div> -->
-                                    <div class="col-11 p-0">
-                                        <input type="text" class="form-control w-100"
+                                <div class="col-11 p-0">
+                                    <input type="text" class="form-control w-100"
                                         placeholder="Search by category, area, name, streets" name="query">
-                                    </div>
-                                    <div class="col-1 p-0">
-                                        <button type="submit" class="btn text-secondary font-weight-bold wi">
-                                            <i class="fas fa-search fa-lg navlinkclr"></i>
-                                        </button>
-                                    </div>
-                                </div>                             
-                        
+                                </div>
+                                <div class="col-1 p-0">
+                                    <button type="submit" class="btn text-secondary font-weight-bold wi">
+                                        <i class="fas fa-search fa-lg navlinkclr"></i>
+                                    </button>
+                                </div>
+                            </div>
+
                         </form>
                     </div>
                 </div>
@@ -162,30 +178,30 @@
                 <!-- ********************* cards ****************** -->
                 <hr class="m-2">
                 <div class="row mb-5">
-
                     {% for detail in details %}
-                    {% for info in infos %}
-                    {% for cover in covers %}
-                    {%if cover.user_id != request.user.id and detail.user_id != request.user.id and info.user_id != request.user.id %}
-                    {%if info.user_id == cover.user_id %}
-                    {%if cover.user_id == detail.user_id %}
+                    {% for info in infos %}                   
+                    {%if info.user_id == detail.user_id %}
+                    
                     <div class="col mb-3">
                         <div class="d-flex justify-content-center">
                             <div class="card" style="width: 18rem; height:22rem;">
-                                <a href="{% url 'pages:profile' info.user_id %}">
-                                    {% if not cover.image.url %}
+                                <a href="{% url 'pages:profile' detail.user_id %}">
+                                    {% if not detail.user.cover_img.image.url %}
                                     <img src="{% static 'img/no-image.png' %}" class="card-img-top border-0"
                                         height="200" width="100%" alt="..." style="object-fit: cover;">
                                     {% else %}
-                                    <img src="{{ cover.image.url }}" class="card-img-top border-0" alt="..."
+                                    <img src="{{detail.user.cover_img.image.url}}" class="card-img-top border-0" alt="..."
                                         width="100%" height="auto" style="object-fit: cover;">
                                     {% endif %}
                                 </a>
                                 <span class="border-bottom"></span>
                                 <div class="card-body">
-                                    <a href="{% url 'pages:profile' info.user_id %}"
+                                    <a href="{% url 'pages:profile' detail.user_id %}"
                                         class="text-decoration-none text-dark">
-                                        <h5 class="card-title font-weight-bold">{{ info.business_name}}</h5>
+                                        <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                            <h5 class="card-title ">{{ detail.user.business_info.business_name }}</h5>
+                                        </div>
+                                        
                                     </a>
 
                                     <pre class="text-secondary text-wrap"
@@ -201,76 +217,79 @@
                             </div>
                         </div>
                     </div>
-                    {%endif%}
-                    {%endif%}
-                    {%endif%}
-                    {% endfor %}
+                    {% endif %}
                     {% endfor %}
                     {% endfor %}
 
                 </div>
                 <div class="row">
-            
+
                     <div class="col-12">
-        
+
                         <nav aria-label="Page navigation">
                             {% if infos.has_other_pages %}
-                        <ul class="pagination mx-auto d-flex justify-content-center" style="background: #ff990;">
-                            {% if infos.has_previous %}
-                            <li class="page-item">
-                                <a href="?page={{ infos.previous_page_number }}" class="page-link text-dark" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            {% else %}
-                            <li class="page-item rounded-left" style="background-color: #ff9900;">
-                                <a href="" class="nav-link disabled font-weight-bold" tabindex="-1" aria-disabled="true" aria-label="Previous">
-                                    <span varia-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
+                            <ul class="pagination mx-auto d-flex justify-content-center">
+                                {% if infos.has_previous %}
+                                <li class="page-item">
+                                    <a href="?page={{ infos.previous_page_number }}" class="page-link text-dark"
+                                        aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item rounded-left" style="background-color: #ff9900;">
+                                    <a href="" class="nav-link disabled font-weight-bold" tabindex="-1"
+                                        aria-disabled="true" aria-label="Previous">
+                                        <span varia-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% for i in infos.paginator.page_range %}
+                                {% if infos.number == i %}
+                                <li class="active page-item" style="background-color: #ff9900;">
+                                    <a href="" class="nav-link disabled font-weight-bold" tabindex="-1"
+                                        aria-disabled="true">
+                                        <span>{{ i }} <span class="sr-only">(current)</span></span>
+                                    </a>
+
+                                </li>
+                                {% else %}
+                                <li class="page-item"><a href="?page={{ i }}" class="page-link text-dark">{{ i }}</a>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+                                {% if infos.has_next %}
+                                <li class="page-item">
+                                    <a href="?page={{ infos.next_page_number }}" class="page-link text-dark"
+                                        aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="page-item rounded-right" style="background-color: #ff9900;">
+                                    <a href="" class="nav-link disabled font-weight-bold" tabindex="-1"
+                                        aria-disabled="true" aria-label="Next">
+                                        <span varia-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
                             {% endif %}
-                            {% for i in infos.paginator.page_range %}
-                            {% if infos.number == i %}
-                            <li class="active page-item" style="background-color: #ff9900;">
-                                <a href="" class="nav-link disabled font-weight-bold" tabindex="-1" aria-disabled="true">
-                                    <span>{{ i }} <span class="sr-only">(current)</span></span>
-                                </a>
-                               
-                            </li>
-                            {% else %}
-                            <li class="page-item"><a href="?page={{ i }}" class="page-link text-dark">{{ i }}</a></li>
-                            {% endif %}
-                            {% endfor %}
-                            {% if infos.has_next %}
-                            <li class="page-item">
-                                <a href="?page={{ infos.next_page_number }}" class="page-link text-dark" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                            {% else %}
-                            <li class="page-item rounded-right" style="background-color: #ff9900;">
-                                <a href="" class="nav-link disabled font-weight-bold" tabindex="-1" aria-disabled="true" aria-label="Next">
-                                    <span varia-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                            {% endif %}
-                        </ul>
-                        {% endif %}
                         </nav>
-        
+
                     </div>
-        
+
                 </div>
-                
+
                 <div>
                 </div>
             </div>
             <div class="col-lg-2 col-md-12 col-sm-12 m-1">
-                
+
             </div>
         </div>
     </div>
-    
+
     {% include 'footer.html' %}
 </body>
 {% endblock %}

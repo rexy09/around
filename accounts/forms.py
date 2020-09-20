@@ -14,8 +14,8 @@ User = get_user_model()
 class SignUpForm(UserCreationForm):
     CHOICES = (
         ('', 'Account Type'),
-        # (1, 'Normal'),
-        (2, 'Business'),
+        ('normal','Normal'),
+        ('business','Business'),
     ) 
     username = forms.CharField(label='', widget=forms.TextInput(attrs={'class':'rounded-pill', 'placeholder':'Username'}))
     email = forms.CharField(label='', widget=forms.TextInput(attrs={'class':'rounded-pill', 'placeholder':'Email'}))

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'hsv$yh0wq41s9wei(8%3-(num_%mnvfl^he$7^%+c+86=eo)s-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -86,9 +87,12 @@ INSTALLED_APPS = [
     'accounts',
     'pages',
     'post',
+    'administrator',
+    'payment',
     # Third Party
     'crispy_forms',
     'django_countries',
+    'background_task',
     # geodjango
     'django.contrib.gis',
     'activity_log',
@@ -142,7 +146,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'around',
-        'USER': 'postgres',
+        'USER': 'freddy',
         'PASSWORD': 'rootadmin',
         'HOST': '127.0.0.1',
         'PORT': '5432'
@@ -237,8 +241,8 @@ EMAIL_USE_TLS = True
 # EMAIL_SSL_CERTFILE =
 
 
-# For writing log to another DB
 
+# For writing log to another DB
 DATABASE_ROUTERS = ['activity_log.router.DatabaseAppsRouter']
 DATABASE_APPS_MAPPING = {'activity_log': 'logs'}
 

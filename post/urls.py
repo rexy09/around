@@ -15,6 +15,8 @@ urlpatterns = [
     path('<int:id>/post/', views.edit_post, name='edit_post'),
     path('post/<int:id>/delete/', views.delete_post, name='delete_post'),
     path('post/<int:id>/img/<int:pid>/delete/', views.delete_post_img, name='delete_post_img'),
+    path('complete_details/', views.complete_details, name='complete_details'),
+    path('post/<int:post>/promote/', views.promote_post, name='promote_post'),
 ]
 
 if settings.DEBUG:

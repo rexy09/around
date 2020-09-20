@@ -1,0 +1,181 @@
+{% extends 'base3.html' %}
+{% load static %}
+
+{% block content %}
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        {% include "sidebar-admin.html" %}
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                 <!-- Topbar -->
+                 {% include "topbar-admin.html" %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Accounts</h1>
+                    <p class="mb-4"></p>
+ <!-- Color System -->
+ <div class="row">
+    <div class="col-lg-3 mb-4">
+        <div class="card bg-primary text-white shadow">
+            <div class="card-body">
+                Primary
+                <div class="text-white-50 small">#4e73df</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 mb-4">
+        <div class="card bg-success text-white shadow">
+            <div class="card-body">
+                Success
+                <div class="text-white-50 small">#1cc88a</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 mb-4">
+        <div class="card bg-info text-white shadow">
+            <div class="card-body">
+                Info
+                <div class="text-white-50 small">#36b9cc</div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="col-lg-3 mb-4">
+        <div class="card bg-warning text-white shadow">
+            <div class="card-body">
+                Warning
+                <div class="text-white-50 small">#f6c23e</div>
+            </div>
+        </div>
+    </div> -->
+    <div class="col-lg-3 mb-4">
+        <a href="#" class=" text-decoration-none" data-toggle="modal" data-target="#raseLogsModal">
+            <div class="card bg-danger text-white shadow">
+                <div class="card-body">
+                    <li class="fas fa-trash"></li>
+                    Danger
+                    <div class="text-white-50 small">Danger</div>
+                </div>
+            </div>
+        </a>                            
+    </div>
+    <!-- <div class="col-lg-3 mb-4">
+        <div class="card bg-secondary text-white shadow">
+            <div class="card-body">
+                Secondary
+                <div class="text-white-50 small">#858796</div>
+            </div>
+        </div>
+    </div> -->
+</div>
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Users Accounts</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Account type</th>
+                                            <th>User type</th>
+                                            <th>Active</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Account type</th>
+                                            <th>User type</th>
+                                            <th>Active</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for user in users %}
+                                        <tr>
+                                            <td>{{user.id}}</td>
+                                            <td>{{user.username}}</td>
+                                            <td>{{user.email}}</td>                                            
+                                            <td>{{user.user_type}}</td>
+                                            <td>{{user.is_staff}}</td>
+                                            <td>{{user.is_active}}</td>                                            
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2019</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Custom scripts for all pages-->
+    {% include 'staticfiles.html' %}
+</body>
+
+{% endblock %}

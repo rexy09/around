@@ -12,6 +12,7 @@ from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.contrib import messages
 # Forms
 from .models import BusinessInfo, BusinessDetails, CoverImg, ProfileImg, Gallery
+from django.contrib.auth.forms import PasswordChangeForm
 from post.models import Post
 from .forms import SignUpForm, LoginForm, BusinessInfoForm, BusinessDetailsForm, CoverImgForm, ProfileImgForm, GalleryImgForm
 from .tokens import account_activation_token
@@ -84,7 +85,8 @@ def signup_view(request):
                     'uid': urlsafe_base64_encode(force_bytes(user.pk)),
                     'token': account_activation_token.make_token(user),
                     })
-                    from_email=settings.EMAIL_HOST_USER
+                    # from_email=settings.EMAIL_HOST_USER
+                    from_email='AroundTz'
                     user_email = email
                     to_email = [user_email,]
                     send_mail(subject, message, from_email, to_email )                
@@ -141,6 +143,16 @@ def activation_success(request):
 def password_reset_view(request):
     
 	return render(request, 'password_reset.html', {})
+
+def password_change(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user,request.POST or None)
+        if form.is_valid():
+            form.save()
+            
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'registration/password_change.html', {'form':form})
 
 @login_required
 def myprofile_view(request, *args, **kwargs):

@@ -20,10 +20,7 @@ class Post(models.Model):
     date_created = models.DateTimeField(auto_now_add= True)
     date_updated = models.DateTimeField(auto_now= True)
     likes = models.IntegerField(default=0)
-
-    # def get_images(self):
-    #     return self.post_img_set.all()
-
+  
     def __str__(self):
         return self.title
 
@@ -95,12 +92,27 @@ class Post(models.Model):
                 return str(years) + " years ago"
 
 
-# <h1>Published {{ postobj.whenpublished }}</h1>
-
 class PostImage(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     file = models.ImageField(upload_to='post_img/',null=True, blank=True)
     date_updated= models.DateTimeField(auto_now= True)
+    
+    def __str__(self):
+        return super().__str__()
 
+class SponsoredPost(models.Model):
+    PLANS = [
+        (7,'7 Days'),
+        (30,'30 Days'),
+        (60,'3 Months' ),
+        (120,'6 Months'),
+        (366,'1 Year'),
+    ]
+    post = models.OneToOneField("Post", related_name='sponsored_post', on_delete=models.CASCADE)
+    sponsored = models.BooleanField(default=False)
+    plan = models.PositiveIntegerField(default=0, choices=PLANS)
+    date_created = models.DateTimeField(auto_now_add= True)
+    date_updated = models.DateTimeField(auto_now= True)
 
-
+    def __str__(self):
+        return super().__str__()

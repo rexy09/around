@@ -1,0 +1,323 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<body>
+    <style>
+        #svgbg {
+            background-image: url("{% static 'img/tablet.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+
+        }
+    </style>
+    {% include 'header.html' %}
+
+    <div style="background-color: #ff9900;" class="p-0 m-0">
+        <div style="background: #00000010;">
+            <div class="row w-100 m-0">
+                <div class="col-12 w-100 p-0">
+                    <div class=" d-flex justify-content-center">
+                        <h1 class=" font-weight-bold my-5 text-center text-light px-1">Terms & Policy</h1>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="row w-100 m-0 pb-5">
+                <div class="col">
+
+                </div>
+
+                <div class="col-xl-8 col-lg-8 col-md-10 col-sm-12 col-xs-12 w-100 p-0">
+
+                </div>
+
+                <div class="col">
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <style>
+        .nav-pills .nav-link.active {
+            background-color: #ff9900 !important;
+        }
+
+        .nav-pills .nav-link {
+            color: #39aae1;
+            font-weight: bold;
+        }
+    </style>
+    <div class=" bg-light">
+        <div class="container" id="top">
+            <h3 class=" pt-5">Terms of Use</h3>
+            <div style="height: 3px; background-color:#ff9900; width:100px;" class="ml-aut mr-auto mt-2 mb-3"></div>
+
+            <div class="row mt-2">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v1-tab" data-toggle="pill" href="#v1" role="tab"
+                            aria-controls="v1" aria-selected="true">Introduction</a>
+                        <a class="nav-link" id="v2-tab" data-toggle="pill" href="#v2" role="tab" aria-controls="v2"
+                            aria-selected="false">Disclaimer & Limitation</a>
+                        <a class="nav-link" id="v3-tab" data-toggle="pill" href="#v3" role="tab" aria-controls="v3"
+                            aria-selected="false">User Conduct</a>
+                        <a class="nav-link" id="v4-tab" data-toggle="pill" href="#v4" role="tab" aria-controls="v4"
+                            aria-selected="false">Violation of terms</a>
+
+                        <h3 class="pt-2">Policy</h3>
+                        <div style="height: 3px; background-color:#ff9900; width:70px;"
+                            class="ml-aut mr-auto mt-2 mb-3">
+                        </div>
+                        <a class="nav-link" id="v5-tab" data-toggle="pill" href="#v5" role="tab" aria-controls="v5"
+                            aria-selected="false">Privacy Policy</a>
+                        <a class="nav-link" id="v6-tab" data-toggle="pill" href="#v6" role="tab" aria-controls="v6"
+                            aria-selected="false">Customers Safety</a>
+                    </div>
+
+                </div>
+                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 bg-white border">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v1" role="tabpanel" aria-labelledby="v1-tab">
+                            <h3 class=" pt-2">Introduction</h3>
+                            <p>While using AroundTz website in Tanzania, you agree to be bound by its terms of use, all
+                                applicable laws and regulations, and agree that you are responsible for compliance with
+                                any
+                                applicable laws. If you do not agree with any of these terms, you are prohibited from
+                                using
+                                this site. The materials contained on AroundTz website are protected by applicable
+                                copyright and trademark law.</p>
+                            <h3> Site terms</h3>
+                            <p>
+                                AroundTz may revise the terms of use for its websites at any time without notice. By
+                                using
+                                the AroundTz websites you are agreeing to be bound by the current version of these terms
+                                and
+                                conditions.
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="v2" role="tabpanel" aria-labelledby="v2-tab">
+
+                            <h3 class="pt-2">Disclaimer</h3>
+
+                            <p class="">
+                                Materials on AroundTz website are provided “as they are”. AroundTz makes no
+                                warranties, expressed or implied, and hereby disclaims and negates all other warranties,
+                                including without limitation, implied warranties or conditions of merchantability,
+                                fitness for a particular purpose, or non-infringement of intellectual property or other
+                                violation of rights. Further, AroundTz, does not warrant or make any
+                                representations concerning the accuracy, likely
+                                results, or reliability of the use of the materials on its
+                                internet website relating to such materials or any
+                                sites linked to the AroundTz site.</p>
+
+                            <h3>Limitations</h3>
+                            <p>
+                                In no event shall AroundTz be liable for any damages (including, without limitation,
+                                damages for loss of data or profit, or due to business interruption) arising out of the
+                                use or inability to use the materials on AroundTz website, even if
+                                AroundTz or AroundTz authorized representative has been notified orally or in writing
+                                of the possibility of
+                                such damage. Because some jurisdictions do not allow limitations on implied warranties,
+                                or limitations of liability for consequential or incidental damages, these limitations
+                                may not apply to you.
+                            </p>
+                            <h3>Revisions</h3>
+                            <p>
+                                The materials appearing on AroundTz website could include technical, typographical,
+                                or photographic errors. AroundTz does not warrant that any of the materials on its
+                                website are accurate, complete or current. AroundTz may make changes to the materials
+                                contained on its website at any time without notice. AroundTz makes no commitment to
+                                update materials.
+                            </p>
+
+                            <h3>Links</h3>
+                            <p>
+
+                                AroundTz has not reviewed all of the sites linked to its website and is not responsible
+                                for the contents of any such linked sites. The inclusion of any link does not imply
+                                endorsement by AroundTz of the site.
+                            </p>
+
+
+
+                        </div>
+                        <div class="tab-pane fade" id="v3" role="tabpanel" aria-labelledby="v3-tab">
+                            <h3 class=" pt-2">Using AroundTz</h3>
+                            <p class="lead">You agree NOT TO post, list, email, or otherwise make available any content:
+                            </p>
+
+                            <p><span style='font-size:20px;'>&#9679;</span> that is unlawful, harmful, threatening,
+                                abusive, harassing, defamatory, libelous, invasive of another's privacy, or is harmful
+                                to minors in any way;</p>
+                            <p><span style='font-size:20px;'>&#9679;</span> that is pornographic or depicts a human
+                                being engaged in actual sexual conduct;</p>
+                            <p><span style='font-size:20px;'>&#9679;</span> that harasses, degrades, intimidates or is
+                                hateful towards an individual or group of individuals on the basis of religion, gender,
+                                sexual orientation, race, ethnicity, age, or disability;</p>
+                            <p><span style='font-size:20px;'>&#9679;</span> that violates the laws of the United
+                                Republic of Tanzania, including but not limited to employment law;</p>
+                            <p><span style='font-size:20px;'>&#9679;</span> that impersonates any person or entity,
+                                including, but not limited to, an AroundTz employee, or falsely states or otherwise
+                                misrepresents your affiliation with a person or entity;</p>
+                            <p><span style='font-size:20px;'>&#9679;</span> that includes personal or identifying
+                                information about another person without that person's explicit consent;</p>
+                            <p><span style='font-size:20px;'>&#9679;</span> that is false, deceptive, misleading,
+                                deceitful, misinformative;</p>
+                            <p><span style='font-size:20px;'>&#9679;</span> that infringes any patent, trademark, trade
+                                secret, copyright or other proprietary rights of any party;</p>
+                            <p><span style='font-size:20px;'>&#9679;</span> that you do not have a right to make
+                                available under any law or under contractual or fiduciary relationships;</p>
+                            <p><span style='font-size:20px;'>&#9679;</span> that constitutes or contains 'link referral
+                                code,' 'junk mail,' 'spam,' 'chain letters,' 'pyramid schemes,' or unsolicited
+                                commercial advertisement;</p>
+                            <p><span style='font-size:20px;'>&#9679;</span> that advertises any illegal service or the
+                                sale of any items the sale of which is prohibited or restricted by any applicable law;
+                            </p>
+                            <p><span style='font-size:20px;'>&#9679;</span> that contains software viruses or any other
+                                computer code, files or programs designed to interrupt, destroy or limit the
+                                functionality of any computer software or hardware or telecommunications equipment;</p>
+                            <p><span style='font-size:20px;'>&#9679;</span> that employs misleading email addresses, or
+                                forged headers or otherwise manipulated identifiers in order to disguise the origin of
+                                Content transmitted through the Service;</p>
+                            <p class="lead">Additionally, you agree not to:</p>
+
+                            <p><span style='font-size:20px;'>&#9679;</span> post the same item or service in more than
+                                one classified category;</p>
+                            <p><span style='font-size:20px;'>&#9679;</span> attempt to gain unauthorized access to
+                                AroundTz's computer systems or engage in any activity that disrupts, diminishes the
+                                quality of, interferes with the performance of, or impairs the functionality of the
+                                AroundTz Website; or</p>
+                            <p><span style='font-size:20px;'>&#9679;</span> use of any form of automated device or
+                                computer program that enables the submission of postings on the Website without
+                                AroundTz's express consent.</p>
+                        </div>
+                        <div class="tab-pane fade" id="v4" role="tabpanel" aria-labelledby="v4-tab">
+                            <h3 class=" pt-2">Violation of terms</h3>
+                            <p>Website users are encouraged to report violations of these Terms of Use by clicking the
+                                “Report Abuse or Incorrect Content” link available on all listing content pages or by
+                                contacting us at the phone numbers or email link below. AroundTz's failure to act with
+                                respect to a breach by you or others does not waive our right to act with respect to
+                                subsequent or similar breaches.</p>
+                        </div>
+                        <div class="tab-pane fade" id="v5" role="tabpanel" aria-labelledby="v5-tab">
+                            <h3 class="pt-2">Privacy Policy </h3>
+                            <p>
+                                AroundTz is committed to protecting its users' privacy. We do not give, sell, share or
+                                disclose information about your individual visits or personal information that you may
+                                provide such as your name, address, email address or telephone number, to anyone outside
+                                aroundtz.com for any reason whatsoever EXCEPT when required by law, or with the user's
+                                express permission. For protecting the personal information submitted to us, we ensure
+                                that our standards are fully in line and compatible with the generally accepted industry
+                                standards and best practices. Nevertheless it is also admitted that no method of
+                                transmission over the Internet, or electronic storage methods are completely secure.
+                            </p>
+                        </div>
+                        <div class="tab-pane fade" id="v6" role="tabpanel" aria-labelledby="v6-tab">
+                            <h3 class=" pt-2">Customers Safety</h3>
+                            <p>However, Around Tz is a better field for advertising your business and facilitates buyers
+                                and sellers. Some safety concept to know about are:</p>
+                            <p class=" lead font-weight-bold">Safety for Seller</p>
+
+                            <p>• Ensure to upload an accurate and clear image of the product.</p>
+                            <p>• Ensure that your registered contacts are always active.</p>
+                            <p>• Ensure you direct and meet the buyers at your office.</p>
+                            <p>• Be aware of fake messages, demand a phone number.</p>
+
+                            <p class=" lead font-weight-bold">Safety for Buyers</p>
+                            <p>• Always see and inspect carefuly the product before buying.</p>
+                            <p>• Meet the seller at his/her office.</p>
+                            <p>• Ask how the product will be delivered.</p>
+                            <p>• Agree how payment and delivery will be made.</p>
+                            <p>• Don’t send cash until you know you want to buy the product.</p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <a href="#top" class="ml-auto m-3 text-muted"><i class="fas fa-arrow-alt-circle-up fa-3x"></i></a>
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+    <div class=" container">
+
+        <div class="row mb-5">
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <h1 class="mt-3">Connect</h1>
+                <div style="height: 4px; background-color:#ff9900; width:100px;" class="ml-aut mr-auto mt-2 mb-3"></div>
+
+                <div class="d-flex flex-row mb-3">
+
+                    <div class=" d-flex flex-row">
+                        <a href="https://www.instagram.com/around.tz/" class=" text-decoration-none text-secondary">
+                            <i class="fab fa-instagram fa-2x mr-2" style="color: #ff9900;"></i>
+                            <span class=" text-muted mr-2 font-weight-bold">@around.tz</span>
+                        </a>
+
+                    </div>
+                    <div class=" d-flex flex-row">
+                        <a href="https://twitter.com/around_tz" class=" text-decoration-none text-secondary">
+                            <i class="fab fa-twitter fa-2x mx-2" style="color: #ff9900;"></i>
+                            <span class=" text-muted font-weight-bold">@around_tz</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="d-flex flex-row mb-3">
+
+                    <div class=" d-flex flex-row">
+                        <a href="https://www.instagram.com/around.tz/" class=" text-decoration-none text-secondary">
+                            <i class="far fa-envelope fa-2x mr-2" style="color: #ff9900;"></i>
+                            <span class=" text-muted font-weight-bold">aroundtz20@gmail.com</span>
+                        </a>
+
+                    </div>
+
+
+                </div>
+                <!-- <div class="d-flex flex-row mb-5">
+                <div class=" d-flex flex-row">
+                    <i class="fab fa-facebook fa-2x mr-2"></i>
+                    <span class=" text-muted my-1 font-weight-bold">aroundtz</span>
+                </div>
+                <div class=" d-flex flex-row">
+                    <i class="fab fa-linkedin-in fa-2x mx-2"></i>
+                    <span class=" text-muted my-1 font-weight-bold">aroundtz</span>
+                </div>
+            </div> -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+    {% include 'footer.html' %}
+
+</body>
+
+{% endblock %}

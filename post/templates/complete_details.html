@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<body>
+    <!-- ****************** NAVIGATION BAR -->
+{% include 'profile_header.html' %}
+
+<div class="container">
+    <h5 class="mt-3 font-weight-bold">Business details required!</h5>
+    <hr>
+    <div class="alert alert-warning my-3" role="alert">
+        <p>
+            Your phone number is required to be included in your post. <br>
+             Please complete your business  <a href="{% url 'accounts:business_details' %}" class=" font-weight-bold text-primary">Details.</a>
+        </p>
+        
+        <a href="{% url 'accounts:business_details' %}" class="btn btn-outline-primary">Business Details</a>
+      </div>
+  
+    
+</div>
+
+{% include 'footer.html' %}
+</body>
+
+{% endblock %}

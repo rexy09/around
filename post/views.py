@@ -7,6 +7,7 @@ from django.core.files import File
 from PIL import Image
 from io import BytesIO
 import os
+import random
 from django.db.models import Q
 
 # Create your views here.
@@ -19,11 +20,11 @@ def all_post(request):
     if request.method =='POST':
         query = request.POST.get('query')
         query_set = Q(title__icontains=query)|Q(price__icontains=query)|Q(content__icontains=query)
-        post_list = Post.objects.filter(query_set).all().order_by('-date_updated')
+        post_list = Post.objects.filter(query_set).all().order_by('-date_created')
         
         page = request.GET.get('page', 1)
 
-        paginator = Paginator(post_list, 10)
+        paginator = Paginator(post_list, 12)
         try:
             posts = paginator.page(page)
         except PageNotAnInteger:
@@ -32,21 +33,25 @@ def all_post(request):
             posts = paginator.page(paginator.num_pages)        
         
     else:        
-        post_list = Post.objects.all().order_by('-date_updated')
-
+        post_list = Post.objects.all().order_by('-date_created')
+        
         page = request.GET.get('page', 1)
 
-        paginator = Paginator(post_list, 10)
+        paginator = Paginator(post_list, 12)
         try:
             posts = paginator.page(page)
         except PageNotAnInteger:
             posts = paginator.page(1)
         except EmptyPage:
             posts = paginator.page(paginator.num_pages)
-
+            
+    
+    post_list = Post.objects.filter(sponsored_post__sponsored=True).all()
+    sponsored = random.sample(list(post_list), len(post_list))
+    
     context = {
         'posts':posts,
-        
+        'sponsored':sponsored,        
     }
     return render(request, 'posts.html', context)
 
@@ -57,7 +62,7 @@ def all_posts(request, *args, **kwargs):
     
     page = request.GET.get('page', 1)
 
-    paginator = Paginator(post_list, 10)
+    paginator = Paginator(post_list, 12)
     try:
         posts = paginator.page(page)
     except PageNotAnInteger:
@@ -98,6 +103,11 @@ def posts_all(request, *args, **kwargs):
 def add_post(request, *args, **kwargs):
     user = request.user
     obj = BusinessDetails.objects.filter(user_id=user.id).first()
+    # update
+    if not obj:
+        
+        return redirect('post:complete_details')
+        
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         form_img = PostImgForm(request.POST, request.FILES)
@@ -131,6 +141,11 @@ def add_post(request, *args, **kwargs):
         
     }
     return render(request, 'add_post.html', context)
+# update
+@login_required
+def complete_details(request):
+    
+    return render(request, 'complete_details.html', {})
 
 
 def view_post(request, *args, **kargs):
@@ -288,3 +303,26 @@ def delete_old_foos():
     return "completed deleting foos at {}".format(timezone.now())
     
 '''
+@login_required
+def promote_post(request, *args, **kwargs):
+    id = kwargs.get('post')
+    user = request.user
+    posts = Post.objects.filter(id=id, author_id=user.id)
+    post = Post.objects.filter(id=id, author_id=user.id).first()
+    
+    if request.method == 'POST':
+        form = SponsoredPostForm(request.POST or None)
+        
+        if form.is_valid():
+            sponsored = form.save(commit=False)
+            sponsored.post = post
+            sponsored.save()
+            return redirect('payment:pay')
+    else:
+        form = SponsoredPostForm()
+    
+    context = {
+        'form':form,
+        'posts':posts,
+               }
+    return render(request, 'promote.html', context)
